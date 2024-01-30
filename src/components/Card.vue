@@ -5,7 +5,7 @@
         title?:string
         descripcion?:string
         sinopsis?:string
-        asientos?:[]
+        asientos?:string[]
     }>()
 </script>
 <template>
