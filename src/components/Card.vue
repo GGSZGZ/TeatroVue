@@ -14,7 +14,7 @@
             <div class="card">
                 <h3 class="card-heading"></h3>
                 <div class="paragraph">
-              
+                <img :src="avatarUrl" alt="Avatar">
             </div>
 
             <div class="link">

@@ -32,8 +32,7 @@ import HomeView from './views/HomeView.vue';
   </header>
 
   <body>
-    <a href="#/homeview">
-    </a>
+    <a href="#/homeview"></a>
   </body>
 
   <main>
