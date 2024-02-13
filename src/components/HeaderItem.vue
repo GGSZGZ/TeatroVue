@@ -1,6 +1,14 @@
+<script setup lang="ts">
 
+//import css
+import "../assets/main.css";
+
+</script>
 <template>
-
+<link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair Display:wght@400;600;700&display=swap"
+    />
   <div class="logo">
       <slot name="logo"></slot>
       <slot name="logosearchtexto"></slot>
@@ -52,7 +60,7 @@
     text-align: center;
     font-size: 28px;
     color: #5d5a88;
-    font-family: "Playfair Display";
+    font-family: 'Playfair Display';
   }
 
 .header-line-hr {
