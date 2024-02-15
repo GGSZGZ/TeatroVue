@@ -56,8 +56,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    bottom: 40px;
-    gap: 33px;
+    bottom: 70px;
+    gap: 40px;
     text-align: center;
     font-size: 28px;
     color: #5d5a88;
@@ -89,10 +89,11 @@
     width: auto;
     height: 36px;
     gap: 20px;
+    margin-left: 20px;
 }
 .footer-line-hr {
-  position: absolute;
-  bottom: -85px;
+  position: relative;
+  bottom: 90px;
   width: 100%;
   border-color: #000;
 }
@@ -104,7 +105,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  transition: background-color 2ls;
+  transition: background-color 2s;
 }
 .redSocial:hover{
     background-color: #cc9936;

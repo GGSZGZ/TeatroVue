@@ -5,6 +5,7 @@ import FooterItem from './components/FooterItem.vue';
 import HomeView from './views/HomeView.vue';
 //import css
 import "./assets/main.css";
+
 </script>
 
 <template>
@@ -28,15 +29,11 @@ import "./assets/main.css";
     
   </HeaderItem>
   </header>
-
-  <body>
-    <a href="#/homeview">
-    </a>
-  </body>
-   <div class="desktop-home"></div>
+   
   <main>
-    <!-- enrutado de las paginas este es el visor lo de arriba es el enrutado-->
-    <RouterView/>
+    <div class="desktop-home">
+      <RouterView />
+    </div>
   </main>
   <footer>
     <FooterItem>
@@ -110,14 +107,5 @@ footer{
   width:40px;
   height: 39px;
 }
-.desktop-home {
-  position: absolute;
-  background-color: var(--color-maroon);
-  width: 100%;
-  height: 4100px;
-  text-align: center;
-  font-size: var(--font-size-25xl);
-  color: var(--color-goldenrod);
-  font-family: var(--font-lobster);
-}
+
 </style>

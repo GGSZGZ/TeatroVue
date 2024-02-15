@@ -23,3 +23,4 @@ const getObraDetails = (id: string) => {
     <p>Información de la obra: {{ getObraDetails(obraId) }}</p>
   </div>
 </template>
+

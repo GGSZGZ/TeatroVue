@@ -190,4 +190,13 @@ let obras=[
   .grip-cards, .grip-cards1{
     width:400px;
   }
+main{
+  background-color: var(--color-maroon);
+  width: 100%;
+  height: 4000px;
+  text-align: center;
+  font-size: var(--font-size-25xl);
+  color: var(--color-goldenrod);
+  font-family: var(--font-lobster);
+}
 </style>
