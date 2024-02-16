@@ -27,15 +27,21 @@
             </h3>
         </div>
         <div class="redesSociales">
-            <div class="redSocial">
-                <slot name="facebook"></slot>
-            </div>
-            <div class="redSocial">
-                <slot name="instagram"></slot>
-            </div>
-            <div class="redSocial">
-                <slot name="twitter"></slot>
-            </div>
+            <a href="https://www.facebook.com/" target="_blank">
+                <div class="redSocial">
+                    <slot name="facebook"></slot>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank">
+                <div class="redSocial">
+                    <slot name="instagram"></slot>
+                </div>
+            </a>
+            <a href="https://twitter.com/?lang=en" target="_blank">
+                <div class="redSocial">
+                    <slot name="twitter"></slot>
+                </div>
+            </a>
         </div>
     </nav>
     
