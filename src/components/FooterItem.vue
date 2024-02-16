@@ -68,6 +68,7 @@
     font-size: 28px;
     color: #5d5a88;
     font-family: "Playfair Display";
+    margin-left: 180px;
 }
 .Container{
     display: flex;
