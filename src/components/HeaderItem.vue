@@ -65,7 +65,7 @@ import "../assets/main.css";
 
 .header-line-hr {
   position: absolute;
-  top: 102px;
+  top: 101px;
   width: 100%;
   border-color: #000;
 }
