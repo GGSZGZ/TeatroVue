@@ -117,6 +117,7 @@ let obras=[
    let obras1=obras.filter(obra => [7, 10, 11, 12, 8, 9].includes(obra.idObra));
    let obras2=obras.filter(obra => ![7, 10, 11, 12, 8, 9].includes(obra.idObra));
 
+   //Calendario
    let actual = new Date();
   let year = actual.getFullYear();
   let month = actual.getMonth() + 1;
@@ -236,7 +237,7 @@ let obras=[
   left: 0;
   width: 1220px;
   height: 1036px;
-  margin-left: 1.8%;
+  margin-left: 9%;
   top: 784px;
   left: 110px;
   height: 2092px;
@@ -250,7 +251,6 @@ let obras=[
     left: 5px;
     top:685px;
     width: 400px;
-    margin-left: 180px;
   }
   .grip-cards, .grip-cards1{
     width:400px;
@@ -263,7 +263,6 @@ main{
   font-size: var(--font-size-25xl);
   color: var(--color-goldenrod);
   font-family: var(--font-lobster);
-  
 }
 #calendar {
   position: absolute;

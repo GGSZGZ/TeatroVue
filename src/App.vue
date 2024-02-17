@@ -11,6 +11,10 @@ import "./assets/main.css";
 <template>
   
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lobster:wght@400&display=swap">
+    <link rel="stylesheet" href="ht tps://fonts.googleapis.com/css2?family=Gentium+Basic:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@700&display=swap">
   <header>
   <HeaderItem>
     <template #logo>

@@ -54,6 +54,7 @@
     left: 0;
     width: 458px;
     height: 80px;
+    margin-left: 100px;
 }
 .sections{
     transform: scale(0.7);
@@ -68,7 +69,7 @@
     font-size: 28px;
     color: #5d5a88;
     font-family: "Playfair Display";
-    margin-left: 180px;
+    margin-left: 250px;
 }
 .Container{
     display: flex;
