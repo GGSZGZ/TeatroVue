@@ -2,7 +2,6 @@
 import { RouterLink,RouterView } from 'vue-router';
 import HeaderItem from './components/HeaderItem.vue';
 import FooterItem from './components/FooterItem.vue';
-import HomeView from './views/HomeView.vue';
 //import css
 import "./assets/main.css";
 
@@ -71,12 +70,12 @@ body {
   line-height: normal;
 }
 header {
-  background-color: #fff;
+  background-color: --neutral-colors-white;
   width: 100%;
   height: 110px;
 }
 footer{
-  background-color: #fff;
+  background-color: --neutral-colors-white;
   width: 100%;
   height: 110px;
 }

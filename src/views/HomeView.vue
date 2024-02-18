@@ -1,8 +1,9 @@
 <script setup lang="ts">
 
 import CardItem from '../components/CardItem.vue';
+import CarrouselItemVue from '../components/CarrouselItem.vue';
 import { onMounted } from 'vue';
-
+import "../assets/main.css";
 let obras=[
 {
     class : 0,
@@ -168,7 +169,6 @@ let obras=[
 
     var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-    console.log("hola");
     document.getElementById("calendar")!.getElementsByTagName("caption")[0].innerHTML = "<div>" + meses[month - 1] + " / " + year + "</div>";
     document.getElementById("calendar")!.getElementsByTagName("tbody")[0].innerHTML = resultado;
     
@@ -178,6 +178,9 @@ let obras=[
 <template>
 
 <main>
+  <CarrouselItemVue>
+
+  </CarrouselItemVue>
   <section class="grip" id="grip">
     <div class="grip-cards1">
       <CardItem v-for="obra in obras2"
@@ -217,14 +220,14 @@ let obras=[
 <style scoped>
 .grip-cards {
   position: absolute;
-  top: 1056px;
+  top: 1200px;
   width: 1220px;
   height: 1036px;
   margin-left: 1.8%;
 }
 .grip-cards1 {
   position: absolute;
-  top: 0;
+  top: 140px;
   left: 0;
   width: 1220px;
   height: 1036px;

@@ -9,7 +9,6 @@ import "../assets/main.css";
         sinopsis?:string
         asientos?:string[]
     }>()
-    console.log(props);
 </script>
 <template>
     
