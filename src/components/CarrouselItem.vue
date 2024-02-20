@@ -16,14 +16,12 @@ import { ref, onMounted } from 'vue';
   ];
       let currentIndex = ref(0);
     const slides = ref<NodeListOf<Element> | null>(null);
-
+      
     const showSlide = (index: number) => {
       slides.value?.forEach((slide) => slide.classList.remove("active"));
       slides.value?.[index]?.classList.add("active");
     };
-
     const nextSlide = () => {
-      
       currentIndex.value = (currentIndex.value + 1) % slides.value?.length!;
       showSlide(currentIndex.value);
     };

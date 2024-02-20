@@ -9,18 +9,7 @@ body {
     position: fixed;
     inset: 0;
   }
-  .header-line-hr {
-    position: absolute;
-    top: 88px;
-    width: 100%;
-    border-color: var(--color-black);
-  }
-  .footer-line-hr {
-    position: absolute;
-    bottom: -2500px;
-    width: 100%;
-    border-color: var(--color-black);
-  }
+  
   
   :root {
     /* fonts */
