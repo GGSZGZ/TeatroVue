@@ -1,6 +1,7 @@
 <template>
     
    <main>
+    
         <div class="heading">HISTORIA DE ESTE TEATRO</div>
         <!--Primer rectangulo-->
         <div class="red-rectangle">
@@ -41,7 +42,7 @@
 <style scoped>
 .heading{
     position: absolute;
-    top: 120px;
+    top: 80px;
     left: 467px;
     font-size: 44px;
     line-height: 66px;
@@ -50,7 +51,7 @@
 }
 .red-rectangle{
     position: absolute;
-    top: 350px;
+    top: 280px;
     left: 50px;
     border-radius: 103px;
     background-color: var(--color-maroon);
@@ -59,7 +60,7 @@
 }
 .yellow-rectangle{
     position: absolute;
-    top: 950px;
+    top: 850px;
     left: 50px;
     margin-left: 100px;
     border-radius: 103px;
@@ -70,8 +71,8 @@
 .text-yllw{
     position: absolute;
     width: 694px;
-    height: 290px;
-    top: 100px;
+    height: 330px;
+    top: 80px;
     left: 50px;
     text-align: left;
     border-radius: 103px;
@@ -80,8 +81,8 @@
 .text-red{
     position: absolute;
     width: 694px;
-    height: 290px;
-    top: 100px;
+    height: 320px;
+    top: 80px;
     left: 600px;
     text-align: right;
     border-radius: 103px;
@@ -139,7 +140,7 @@ main{
     position: relative;
     background-color: var(--neutral-colors-white);
     width: 100%;
-    height: 1600px;
+    height: 1470px;
     text-align: center;
     font-size: 20px;
     color: var(--neutral-colors-white);

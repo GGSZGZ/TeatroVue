@@ -26,7 +26,7 @@ main{
 .send-message {
     position: absolute;
     top: 850px;
-    left: 1121px;
+    left: 1090px;
     margin-left: 3%;
     border-radius: var(--br-11xl);
     background-color: var(--color-maroon);

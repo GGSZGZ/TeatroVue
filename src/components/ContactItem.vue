@@ -50,7 +50,7 @@
         position: absolute;
         top: 300px;
         left: 747px;
-        width: 603px;
+        width: 615px;
         height: 526px;
         margin-left: 3%;
         background-color: var(--color-maroon);
