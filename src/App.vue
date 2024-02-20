@@ -24,7 +24,7 @@ import "./assets/main.css";
     </template>
     <template #home><RouterLink to="/" style="text-decoration: none;">Home</RouterLink></template>
     <template #about><RouterLink to="/about" style="text-decoration: none;">About</RouterLink></template>
-    <template #contact>Contact</template>
+    <template #contact><RouterLink to="/contact" style="text-decoration: none;">Contact</RouterLink></template>
     <template #logosearch>
       <img alt="" src="./assets/searchIcon.png" class="busqueda-1-icon"/>
     </template>
@@ -50,8 +50,8 @@ import "./assets/main.css";
       <template #home><RouterLink to="/" style="text-decoration: none;">Home</RouterLink></template>
       <template #aboutIcon><RouterLink to="/about" style="text-decoration: none"><img alt="" src="./assets/infoIcon.png" class="icon"></RouterLink></template>
       <template #about><RouterLink to="/about" style="text-decoration: none;">About</RouterLink></template>
-      <template #contactIcon><img alt="" src="./assets/phoneIcon.png" style="text-decoration: none;" class="icon"></template>
-      <template #contact>Contact</template>
+      <template #contactIcon><RouterLink to="/contact" style="text-decoration: none;"><img alt="" src="./assets/phoneIcon.png" style="text-decoration: none;" class="icon"></RouterLink></template>
+      <template #contact><RouterLink to="/contact" style="text-decoration: none;">Contact</RouterLink></template>
       <template #logosearch>
         <img alt="" src="./assets/searchIcon.png" class="busqueda-1-icon"/>
       </template>
