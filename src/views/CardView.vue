@@ -1,23 +1,21 @@
 <script setup lang="ts">
 import  WeekScheduleItem from '@/components/WeekScheduleItem.vue';
+import TicketScheduleItem from '@/components/TicketScheduleItem.vue';
+import DirectorBiographyItem from '@/components/DirectorBiographyItem.vue';
+import GenreItem from '@/components/GenreItem.vue'
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 
 const obraId = ref('');
-  
+
 onMounted(() => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   const route = useRouter();
   const idFromRoute = route.currentRoute.value.params.id;
-
   obraId.value = Array.isArray(idFromRoute) ? idFromRoute[0] : idFromRoute.toString();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-
-// const getObraDetails = (id: string) => {
-//   return `Detalles de la obra ${id}`;
-// };
 </script>
 
 <template>
@@ -31,6 +29,13 @@ onMounted(() => {
       </div>
       <h3 class="sinopsi">Sinopsis</h3>
     </section>
+    <!-- horario -->
+    <TicketScheduleItem />
+
+    <DirectorBiographyItem/>
+
+    <GenreItem/>
+    
   </main>
 </template>
 
@@ -72,7 +77,7 @@ onMounted(() => {
   .sinopsis {
     position: absolute;
     width: 1358px;
-    top: 900px;
+    top: 800px;
     left: 90px;
     height: 533px;
     text-align: justify;
