@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import ContactItem from '@/components/ContactItem.vue';
 import MapContactItem from '@/components/MapContactItem.vue';
+import { onMounted } from 'vue';
+    onMounted(() =>{
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
 </script>
 <template>
     <main>
