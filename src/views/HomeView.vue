@@ -123,7 +123,7 @@ let obras=[
   //Obras
   const router = useRouter();
   const navigateToObra = (idObra: number) => {
-    router.push({ name: 'obra', params: { id: idObra.toString() } });
+    router.push({ name: 'card', params: { id: idObra.toString() } });
   };
 </script>
 <template>

@@ -5,17 +5,24 @@ import DirectorBiographyItem from '@/components/DirectorBiographyItem.vue';
 import GenreItem from '@/components/GenreItem.vue'
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import PopUpItemVue from '@/components/PopUpItem.vue';
 
-
+const route = useRouter();
 const obraId = ref('');
 
 onMounted(() => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  const route = useRouter();
+  
   const idFromRoute = route.currentRoute.value.params.id;
   obraId.value = Array.isArray(idFromRoute) ? idFromRoute[0] : idFromRoute.toString();
 });
-
+const showPopup = ref(false);
+const togglePopUp = () => {
+  showPopup.value = !showPopup.value;
+};
+const navigateToTickets = () =>{
+  route.push({ name: 'ticket', params: { id: obraId.value.toString() } });
+}
 </script>
 
 <template>
@@ -30,11 +37,13 @@ onMounted(() => {
       <h3 class="sinopsi">Sinopsis</h3>
     </section>
     <!-- horario -->
-    <TicketScheduleItem />
+    <TicketScheduleItem @togglePopUp="togglePopUp"/>
 
     <DirectorBiographyItem/>
 
     <GenreItem/>
+
+    <PopUpItemVue v-if="showPopup" @togglePopUp="togglePopUp" @navigateToTickets="navigateToTickets"/>
     
   </main>
 </template>
@@ -45,7 +54,7 @@ onMounted(() => {
     text-align: center;
     position: relative;
     width: 100%;
-    height: 3400px;
+    height: 3200px;
     font-size: var(--font-size-25xl);
     color: var(--color-goldenrod);
     font-family: var(--font-lobster); 

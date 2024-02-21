@@ -1,49 +1,14 @@
 <script setup lang="ts">
+import { defineProps, defineEmits } from 'vue';
 
-// var horario;
-// function addPopupClickEvent(buttonId) {
-//   var button = document.getElementById(buttonId);
-//   if (button) {
-//     button.addEventListener("click", function () {
-//       //Obtención de la hora del horario al seleccionar el botón
-//       switch(buttonId){
-//         case "buttonSeleccionar":
-//           horario = document.getElementById("hora1").textContent;
-//           localStorage.setItem('hora', horario);
-//           break;
-//         case "buttonSeleccionar1":
-//           horario = document.getElementById("hora2").textContent;
-//           localStorage.setItem('hora', horario);
-//           break;
-//         case "buttonSeleccionar2":
-//           horario = document.getElementById("hora3").textContent;
-//           localStorage.setItem('hora', horario);
-//           break;
-//       }
-//       var popup = document.getElementById("desktopPopUp");
-//       if (!popup) return;
-//       var popupStyle = popup.style;
-//       if (popupStyle) {
-//         popupStyle.display = "flex";
-//         popupStyle.zIndex = 100;
-//         popupStyle.backgroundColor = "rgba(128, 128, 128, 0.7)";
-//         popupStyle.alignItems = "center";
-//         popupStyle.justifyContent = "center";
-//       }
-//       popup.setAttribute("closable", "");
-//       var onClick =
-//         popup.onClick ||
-//         function (e) {
-//           if (e.target === popup && popup.hasAttribute("closable")) {
-//             popupStyle.display = "none";
-//           }
-//         };
-//       popup.addEventListener("click", onClick);
-//     });
-//   }
-// }
+const props = defineProps({
+  show: Boolean
+});
+const emits = defineEmits(['togglePopUp']);
 
-
+function handleClick(){
+  emits('togglePopUp');
+};
 
 </script>
 
@@ -67,17 +32,17 @@
       </section>
       
       <div class="botonera">
-      <button class="button-seleccionar" id="buttonSeleccionar">
+      <button class="button-seleccionar" id="buttonSeleccionar" @click="handleClick()">
         <div class="master-primary-button4">
         </div>
         <div class="seleccionar">Seleccionar</div>
       </button>
-      <button class="button-seleccionar1" id="buttonSeleccionar1">
+      <button class="button-seleccionar1" id="buttonSeleccionar1" @click="handleClick()">
         <div class="master-primary-button4">
         </div>
         <div class="seleccionar">Seleccionar</div>
       </button>
-      <button class="button-seleccionar2" id="buttonSeleccionar2">
+      <button class="button-seleccionar2" id="buttonSeleccionar2" @click="handleClick()">
         <div class="master-primary-button4">
         </div>
         <div class="seleccionar">Seleccionar</div>
