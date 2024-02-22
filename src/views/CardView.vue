@@ -44,7 +44,6 @@ const navigateToTickets = () =>{
     <GenreItem/>
 
     <PopUpItemVue v-if="showPopup" @togglePopUp="togglePopUp" @navigateToTickets="navigateToTickets"/>
-    
   </main>
 </template>
 
