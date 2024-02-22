@@ -18,8 +18,8 @@ onMounted(() => {
       <img class="icon-circle-check" alt="" src="../assets/checkIcon.svg">
 
       <div class="ok-button">
-        <RouterLink to="/" style="text-decoration: none;">
-        <b class="button" id="okBtn">OK</b>
+        <RouterLink to="/" style="text-decoration: none; color: var(--neutral-colors-white);">
+        <b class="button" id="okBtn" >OK</b>
         </RouterLink>
       </div>
       <div class="descargar-button">

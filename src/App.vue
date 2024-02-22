@@ -22,9 +22,9 @@ import "./assets/main.css";
     <template #logosearchtexto>
       <img alt="" src="./assets/logoTextIcon.png" class="logosolo-texto-1"/>
     </template>
-    <template #home><RouterLink to="/" style="text-decoration: none;">Home</RouterLink></template>
-    <template #about><RouterLink to="/about" style="text-decoration: none;">About</RouterLink></template>
-    <template #contact><RouterLink to="/contact" style="text-decoration: none;">Contact</RouterLink></template>
+    <template #home><RouterLink to="/" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Home</RouterLink></template>
+    <template #about><RouterLink to="/about" style="text-decoration: none; color: var(--neutral-colors-headings-black);">About</RouterLink></template>
+    <template #contact><RouterLink to="/contact" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Contact</RouterLink></template>
     <template #logosearch>
       <img alt="" src="./assets/searchIcon.png" class="busqueda-1-icon"/>
     </template>
@@ -47,11 +47,11 @@ import "./assets/main.css";
         <img alt="" src="./assets/logoTextIcon.png" class="logosolo-texto-1"/>
       </template>
       <template #homeIcon><RouterLink to="/" style="text-decoration: none;"><img alt="" src="./assets/homeIcon.png" class="icon"></RouterLink></template>
-      <template #home><RouterLink to="/" style="text-decoration: none;">Home</RouterLink></template>
+      <template #home><RouterLink to="/" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Home</RouterLink></template>
       <template #aboutIcon><RouterLink to="/about" style="text-decoration: none"><img alt="" src="./assets/infoIcon.png" class="icon"></RouterLink></template>
-      <template #about><RouterLink to="/about" style="text-decoration: none;">About</RouterLink></template>
+      <template #about><RouterLink to="/about" style="text-decoration: none; color: var(--neutral-colors-headings-black);">About</RouterLink></template>
       <template #contactIcon><RouterLink to="/contact" style="text-decoration: none;"><img alt="" src="./assets/phoneIcon.png" style="text-decoration: none;" class="icon"></RouterLink></template>
-      <template #contact><RouterLink to="/contact" style="text-decoration: none;">Contact</RouterLink></template>
+      <template #contact><RouterLink to="/contact" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Contact</RouterLink></template>
       <template #logosearch>
         <img alt="" src="./assets/searchIcon.png" class="busqueda-1-icon"/>
       </template>

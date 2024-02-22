@@ -37,7 +37,7 @@ const goBack = () => {
           <b @click="goBack" class="button-cancelar">Cancelar</b>
         </div>
         <div class="compra-realizada2" id="compraRealizadaContainer1">
-            <RouterLink to="/success" style="text-decoration: none;">
+            <RouterLink to="/success" style="text-decoration: none; color: var(--neutral-colors-white);">
           <b class="button-comprar">Comprar</b>
         </RouterLink>
         </div>
