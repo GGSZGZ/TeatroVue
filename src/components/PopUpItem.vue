@@ -1,70 +1,81 @@
 <script setup lang="ts">
-import { defineProps, onMounted} from 'vue';
+import { defineProps, onMounted, onUpdated} from 'vue';
 
 const props = defineProps({
   show: Boolean
 });
 const emits = defineEmits(['togglePopUp', 'navigateToTickets'])
-    onMounted(() => {
-        const popup = document.getElementById("desktopPopUp")!;
+
+const applyPopupStyles = () => {
+      const popup = document.getElementById("desktopPopUp");
+      if (popup) {
         const popupStyle = popup.style;
         if (popupStyle) {
-            popupStyle.position = "fixed";
-            popupStyle.top = '50%';
-            popupStyle.left = '50%';
-            popupStyle.transform = "translate(-50%, -50%)"
-            popupStyle.display = "flex";
-            popupStyle.zIndex = '9999';
-            popupStyle.backgroundColor = "rgba(128, 128, 128, 0.7)";
-            popupStyle.alignItems = "center";
-            popupStyle.justifyContent = "center";
+          popupStyle.position = "fixed";
+          popupStyle.top = '50%';
+          popupStyle.left = '50%';
+          popupStyle.transform = "translate(-50%, -50%)";
+          popupStyle.display = "flex";
+          popupStyle.zIndex = '9999';
+          popupStyle.backgroundColor = "rgba(128, 128, 128, 0.7)";
+          popupStyle.alignItems = "center";
+          popupStyle.justifyContent = "center";
         }
         popup.setAttribute("closable", "");
 
-        const onClick = popup.onclick || function (e: MouseEvent) {
-        if (e.target === popup && popup.hasAttribute("closable")) {
-            popupStyle.display = "none";
+        const onClick = (e: MouseEvent) => {
+          if (e.target === popup && popup.hasAttribute("closable")) {
+            popup.style.display = "none";
             emits('togglePopUp');
-        }
+            limpiarSalaDeCine();
+          }
         };
 
         popup.addEventListener("click", onClick);
+      }
+    };
+    onMounted(() => {
+        applyPopupStyles();
 
         crearSalaDeCine(6,6);
 
         
     });
+    onUpdated(() => {
+        applyPopupStyles();
+    })
 
-
+    function limpiarSalaDeCine() {
+      const salaCine = document.getElementById('sala-cine')!;
+      const cantidad = document.getElementById('cantidad') as HTMLElement;
+      const precio = document.getElementById('importe') as HTMLElement;
+      salaCine.innerHTML = ''; // Elimina todos los elementos dentro del contenedor de la sala de cine
+      importe = 0; // Reinicia el importe
+      cantidadAsientos = 0; // Reinicia la cantidad de asientos
+      cantidad.textContent = "ENTRADAS SELECCIONADAS: "+ cantidadAsientos;
+      precio.textContent = "IMPORTE TOTAL: "+importe+"€";
+      asientosOcupados = []; // Reinicia la lista de asientos ocupados
+      const tbody = document.getElementById('asientosSeleccionados')!;
+      tbody.innerHTML = '';
+  }
 
     // Función para crear la sala de cine
     let importe: number = 0;
         let cantidadAsientos: number;
         let asientosOcupados: number[] = [];
         function crearSalaDeCine(filas: number, columnas: number): void {
+            limpiarSalaDeCine();
             const salaCine = document.getElementById('sala-cine') as HTMLElement;
             const cantidad = document.getElementById('cantidad') as HTMLElement;
             const precio = document.getElementById('importe') as HTMLElement;
             
             const asientosSeleccionadosArray: number[] = [];
             
-            if(salaCine.children.length === 0){
                 for (let fila = 1; fila <= filas; fila++) {
                     for (let columna = 1; columna <= columnas; columna++) {
                         const asiento = document.createElement('div');
                         asiento.classList.add('asiento');
                         asiento.textContent = fila + '-' + columna;
-
-                        // Aplicar estilos al asiento
-                        asiento.style.width = '50px';
-                        asiento.style.height = '50px';
-                        asiento.style.display = 'flex';
-                        asiento.style.alignItems = 'center';
-                        asiento.style.justifyContent = 'center';
-                        asiento.style.fontSize = '14px';
-                        asiento.style.cursor = 'pointer';
-                        asiento.style.backgroundImage = 'url("../src/assets/asiento.svg")';
-                        asiento.style.backgroundSize = 'cover';
 
                         const indiceAsiento = (fila - 1) * columnas + columna;
 
@@ -125,8 +136,7 @@ const emits = defineEmits(['togglePopUp', 'navigateToTickets'])
                         });
                     }
                 }
-            }
-        }
+          }
         
         
 </script>
@@ -166,7 +176,7 @@ const emits = defineEmits(['togglePopUp', 'navigateToTickets'])
     </main>
 </template>
 
-<style scoped>
+<style >
 .desktop-popup {
     position: relative;
     border-radius: var(--br-31xl);
@@ -293,7 +303,24 @@ const emits = defineEmits(['togglePopUp', 'navigateToTickets'])
 .button-cancelar:hover {
   color: var(--color-maroon);
 }
-
+#sala-cine .asiento{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  background-image: url("../src/assets/asiento.svg");
+  background-size: cover;
+  color: var(--color-gray);
+}
+#sala-cine .asiento-seleccionado{
+  background-image: url("../src/assets/asientoseleccionado.svg");
+}
+#sala-cine .asiento-ocupado{
+  background-image: url("../src/assets/asientoocupado.svg");
+}
 th {
   color: var(--neutral-colors-white);
   font-family: var(--font-playfair-display);
