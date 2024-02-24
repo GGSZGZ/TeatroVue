@@ -16,9 +16,6 @@ import "./assets/main.css";
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@700&display=swap">
   <header>
   <HeaderItem>
-    <template #logo>
-      <img alt="" src="./assets/logoIcon.png" class="logo-1-icon"/>
-    </template>
     <template #logosearchtexto>
       <img alt="" src="./assets/logoTextIcon.png" class="logosolo-texto-1"/>
     </template>
@@ -40,9 +37,6 @@ import "./assets/main.css";
   </main>
   <footer>
     <FooterItem>
-      <template #logo>
-        <img alt="" src="./assets/logoIcon.png" class="logo-1-icon"/>
-      </template>
       <template #logosearchtexto>
         <img alt="" src="./assets/logoTextIcon.png" class="logosolo-texto-1"/>
       </template>
@@ -78,14 +72,6 @@ footer{
   background-color: --neutral-colors-white;
   width: 100%;
   height: 110px;
-}
-.logo-1-icon {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 143px;
-  height: 110px;
-  object-fit: cover;
 }
 .logosolo-texto-1 {
   position: absolute;
