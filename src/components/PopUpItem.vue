@@ -78,7 +78,7 @@ const applyPopupStyles = () => {
                         
                         const svgContent =`<?xml version="1.0" standalone="no"?>
                                             <svg id="svgElement" version="1.0"  xmlns="http://www.w3.org/2000/svg"
-                                            width="128.000000pt" height="40.000000pt" viewBox="0 0 128.000000 128.000000">
+                                            width="140.000000pt" height="40.000000pt" viewBox="0 0 128.000000 128.000000">
                                             
                                             <g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
                                             fill="none" stroke="white">
@@ -113,13 +113,21 @@ const applyPopupStyles = () => {
                         }
                         
                         salaCine.appendChild(asiento);
-
+                       
+                        
                         asiento.addEventListener('click', function () {
+                          //ocultar text
+                          var textSvg=asiento.querySelector('.asiento-text') as HTMLElement;
+                          
+                            textSvg.style.visibility = 'hidden';
+                        
+
+
                             if (!this.classList.contains('asiento-ocupado')) {
                                 this.classList.toggle('asiento-seleccionado');
                                 //animacion
                                 var pathBlack = asiento.querySelectorAll('.yellow') as any;
-
+                                
                                 pathBlack.forEach((pathBlack : any) => {
                                   pathBlack.style.animationName = "dash";
                                     pathBlack.style.animationDuration = "2s";
@@ -127,11 +135,12 @@ const applyPopupStyles = () => {
                                     pathBlack.style.animationDirection = "alternate";
                                 });
                                
-
+                                let asientosSeleccionadosImage = document.querySelectorAll('.asiento-seleccionado');
+                                if(asientosSeleccionadosImage.length<=6){
                                 setTimeout(() => {
                                 this.innerHTML=`<?xml version="1.0" standalone="no"?>
                                                   <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-                                                  width="128.000000pt" height="128.000000pt" viewBox="0 0 128.000000 128.000000">
+                                                  width="140.000000pt" height="40.000000pt" viewBox="0 0 128.000000 128.000000">
 
                                                   <g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
                                                   fill="none" stroke="white">
@@ -142,19 +151,20 @@ const applyPopupStyles = () => {
                                                   221 435 217 265 -2 304 -4 332 -20z"/>
                                                   <path d="M307 1069 c-36 -21 -47 -63 -47 -179 l0 -110 30 0 c19 0 40 -9 55
                                                   -25 24 -23 25 -31 25 -135 l0 -110 270 0 270 0 0 110 c0 104 1 112 25 135 15
-                                                  16 36 25 55 25 l30 0 0 110 c0 117 -12 159 -49 180 -26 14 -640 13 -664 -1z" fill="#cc9936"/>
+                                                  16 36 25 55 25 l30 0 0 110 c0 117 -12 159 -49 180 -26 14 -640 13 -664 -1z"class="yellow" fill="#cc9936"/>
                                                   <path d="M162 728 c-9 -9 -12 -68 -12 -205 l0 -193 90 0 90 0 0 186 c0 109 -4
-                                                  193 -10 205 -9 16 -22 19 -78 19 -40 0 -73 -5 -80 -12z" fill="#cc9936"/>
+                                                  193 -10 205 -9 16 -22 19 -78 19 -40 0 -73 -5 -80 -12z" class="yellow" fill="#cc9936"/>
                                                   <path d="M960 721 c-6 -12 -10 -96 -10 -205 l0 -186 90 0 90 0 0 193 c0 137
-                                                  -3 196 -12 205 -7 7 -40 12 -80 12 -56 0 -69 -3 -78 -19z" fill="#cc9936"/>
-                                                  <path d="M370 395 l0 -65 270 0 270 0 0 65 0 65 -270 0 -270 0 0 -65z" fill="#cc9936"/>
-                                                  <path d="M150 246 l0 -46 46 0 45 0 -3 43 c-3 42 -3 42 -45 45 l-43 3 0 -45z" fill="#cc9936"/>
+                                                  -3 196 -12 205 -7 7 -40 12 -80 12 -56 0 -69 -3 -78 -19z" class="yellow" fill="#cc9936"/>
+                                                  <path d="M370 395 l0 -65 270 0 270 0 0 65 0 65 -270 0 -270 0 0 -65z" class="yellow" fill="#cc9936"/>
+                                                  <path d="M150 246 l0 -46 46 0 45 0 -3 43 c-3 42 -3 42 -45 45 l-43 3 0 -45z" class="yellow" fill="#cc9936"/>
                                                   <path d="M1047 283 c-4 -3 -7 -24 -7 -45 l0 -38 45 0 45 0 0 45 0 45 -38 0
-                                                  c-21 0 -42 -3 -45 -7z" fill="#cc9936"/>
+                                                  c-21 0 -42 -3 -45 -7z" class="yellow" fill="#cc9936"/>
                                                   </g>
                                                   <text x="50%" y="50%" class="asiento-text" text-anchor="middle">${fila}-${columna}</text>
                                                   </svg>`;
                                                 }, 1000);
+                                              }
                                   // this.classList.add('asiento-ocupado');
                                 // Extraer el número de fila y columna del texto del asiento
                                 const numeroAsiento = this.querySelector('svg text.asiento-text')?.textContent as string;
@@ -162,13 +172,14 @@ const applyPopupStyles = () => {
                                 const numeroFila = parseInt(numeroAsiento.charAt(0));
                                 const numeroColumna = parseInt(numeroAsiento.charAt(2));
                         
-                                const asientosSeleccionadosImage = document.querySelectorAll('.asiento-seleccionado');
+                                asientosSeleccionadosImage = document.querySelectorAll('.asiento-seleccionado');
+                                
                                 if (asientosSeleccionadosImage.length > 6) {
                                     alert('¡Ya has seleccionado el máximo de 6 asientos!');
                                     this.classList.remove('asiento-seleccionado');
                                     this.innerHTML=`<?xml version="1.0" standalone="no"?>
                                             <svg id="svgElement" version="1.0"  xmlns="http://www.w3.org/2000/svg"
-                                            width="128.000000pt" height="40.000000pt" viewBox="0 0 128.000000 128.000000">
+                                            width="140.000000pt" height="40.000000pt" viewBox="0 0 128.000000 128.000000">
                                             
                                             <g transform="translate(0.000000,128.000000) scale(0.100000,-0.100000)"
                                             fill="none" stroke="white">
@@ -195,6 +206,7 @@ const applyPopupStyles = () => {
                                             `;
                                     return;
                                 }
+                              
 
                                 // Mostrar la información en la consola (puedes cambiar esto según tus necesidades
                                 const asientosSeleccionados = document.getElementById('asientosSeleccionados') as HTMLTableElement;   
@@ -222,17 +234,12 @@ const applyPopupStyles = () => {
                                     cantidad.textContent = "ENTRADAS SELECCIONADAS: " + asientosSeleccionadosImage.length;
                                     precio.textContent = "IMPORTE TOTAL: " + importe + "€";
                                 }
-                                // const cantidadAsientos = asientosSeleccionadosImage.length;
-                                // console.log(asientosSeleccionadosArray);
-                                // localStorage.setItem('importe', importe.toString());
-                                // localStorage.setItem('cantidadAsientos', cantidadAsientos.toString());
-                                // localStorage.setItem('asientosArray', JSON.stringify(asientosSeleccionadosArray));
-                                //animacon 2º no se hace
                                 if(!this.classList.contains('asiento-seleccionado')){
+                                  pathBlack = asiento.querySelectorAll('.yellow') as any;
                                   pathBlack.forEach((pathBlack : any) => {
+                                    
                                     pathBlack.style.animationName = "dash-inv";
                                       pathBlack.style.animationDuration = "2s";
-                                      // pathBlack.style.animationIterationCount = "infinite";
                                       pathBlack.style.animationDirection = "alternate";
                                     });
                                   setTimeout(() => {
@@ -425,7 +432,7 @@ const applyPopupStyles = () => {
 th {
   color: var(--neutral-colors-white);
   font-family: var(--font-playfair-display);
-  width: 50%;
+  width: 100%;
   text-align: left;
 }
 .asiento-ocupado {
@@ -433,37 +440,53 @@ th {
   background-image: url("../assets/asientoocupado.svg");
 }
 
-
+.asiento-text{
+  visibility: visible;
+}
 @keyframes dash {
+
     0% {
         fill: #f9f9f9;
+        transform: scale(1);
+        transform-origin: center center;
     }
-    25%{
-      fill: #f7ee75;
+    20% {
+        fill: #f7ee75;
+        transform: scale(1.1);
+        transform-origin: center center;
     }
-    50% {
+    40% {
         fill: #edd852;
+        transform: scale(1.11);
+        transform-origin: center center;
     }
     100% {
         fill: #c99f4d; 
+        transform: scale(1);
+        transform-origin: center center;
     }
 }
 
 @keyframes dash-inv {
-  0% {
+    0% {
         fill: #c99f4d; 
+        transform: scale(1);
+        transform-origin: center center;
     }
-    25% {
+    20% {
         fill: #edd852;
+        transform: scale(1.1);
+        transform-origin: center center;
     }
-  
-    50%{
-      fill: #f7ee75;
+    40% {
+        fill: #f7ee75;
+        transform: scale(1.11);
+        transform-origin: center center;
     }
     100% {
         fill: #f9f9f9;
+        transform: scale(1);
+        transform-origin: center center;
     }
 }
-
-
 </style>
