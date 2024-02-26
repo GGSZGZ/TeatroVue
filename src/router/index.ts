@@ -5,6 +5,7 @@ import ContactView from "@/views/ContactView.vue";
 import CardView from "@/views/CardView.vue";
 import TicketsView from "@/views/TicketView.vue";
 import SuccesView from "@/views/SuccesView.vue";
+import AdminView from "@/views/AdminView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,11 +34,17 @@ const router = createRouter({
             path: '/ticket/:id', 
             name: 'ticket',
             component: TicketsView,
-          },{
+          },
+          {
             path: '/success', 
             name: 'success',
             component: SuccesView,
           },
+          {
+            path: '/admin', 
+            name: 'admin',
+            component: AdminView,
+          }
         
     ]
 })
