@@ -11,7 +11,7 @@ import TableItem from '@/components/TableItem.vue';
        
        console.log(`Añadir obra con ID`);
      }
-     const valid = ref('false');
+     const valid = ref('');
      //TextField Título
      const nameRules = ref([
       (value:string) => !!value || 'El campo no puede estar vacío', // Debe tener al menos un carácter
@@ -23,16 +23,15 @@ import TableItem from '@/components/TableItem.vue';
       const imageUrlRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
       return imageUrlRegex.test(imageUrl.value);
     });
-    
-    
-   
+  
+
 </script>
 <template>
-    <v-form class="custom-form" v-model="valid">
+    <v-form class="custom-form">
       <v-container>
         <v-row>
           <v-col
-            cols="24"
+            cols="14"
             md="2"
           >
           <v-text-field clearable
@@ -44,7 +43,7 @@ import TableItem from '@/components/TableItem.vue';
           </v-col>
 
           <v-col
-            cols="24"
+            cols="14"
             md="4"
           >
           <v-textarea clearable
@@ -52,13 +51,13 @@ import TableItem from '@/components/TableItem.vue';
                 label="Description"
                 placeholder="Una obra apasionante llena de altibajos y de sentimiento florecidos"
                 required
-                rows="3"
-                no-resize
+                rows="1"
+                auto-grow
               ></v-textarea>
           </v-col>
 
           <v-col
-            cols="24"
+            cols="14"
             md="4"
           >
           <v-textarea clearable
@@ -66,13 +65,13 @@ import TableItem from '@/components/TableItem.vue';
                 hide-details
                 placeholder="En el bullicioso mundo teatral del siglo XIX, un enmascarado misterioso acecha entre bambalinas, desentrañando secretos..."
                 required
-                rows="3"
-                no-resize
+                rows="1"
+                auto-grow
               ></v-textarea>
           </v-col>
 
           <v-col
-            cols="24"
+            cols="14"
             md="2"
           >
             <v-text-field v-model="imageUrl" label="Image URL"></v-text-field>
@@ -80,8 +79,8 @@ import TableItem from '@/components/TableItem.vue';
           </v-col>
 
           <v-col
-            cols="24"
-            md="12"
+            cols="14"
+            md="2"
           >
             <button @click="anyadirObra()">Añadir Obra</button>
           </v-col>
@@ -89,21 +88,13 @@ import TableItem from '@/components/TableItem.vue';
       </v-container>
     </v-form>
 
-  
-  
-  
-  
-  
-
-    
     <TableItem :obras="obras"/>
 </template>
 <style scoped>
     button{
-        width: 8%; 
+        width: 100%; 
         padding: 10px; 
         margin: 5px; 
-        margin-left: 91.9%; 
         background-color: var(--color-maroon); 
         color: #ffffff; 
         cursor: pointer; 
@@ -117,6 +108,12 @@ import TableItem from '@/components/TableItem.vue';
     .custom-form{
       position: relative;
       width: 100%;
-      right: 160px;
+      right: 30px;
+    }
+    .v-container{
+      display: flex;
+    }
+    .v-row{
+      flex-wrap: nowrap;
     }
 </style>
