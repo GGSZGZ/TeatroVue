@@ -123,8 +123,8 @@ function handleClick(){
 }
 .disponibles {
     position: absolute;
-    top: 90px;
-    left: 600px;
+    top: 80px;
+    left: 580px;
     line-height: 34px;
     display: inline-block;
     width: 183px;
@@ -133,14 +133,14 @@ function handleClick(){
 .carrito-de-compras-1-icon {
     position: absolute;
     top: 150px;
-    left: 690px;
+    left: 650px;
     width: 32px;
     height: 32px;
     object-fit: cover;
 }
 .carrito-de-compras-2-icon {
     position: absolute;
-    left: 690px;
+    left: 650px;
     width: 32px;
     height: 32px;
     object-fit: cover;
@@ -148,7 +148,7 @@ function handleClick(){
 }
 .carrito-de-compras-3-icon {
     position: absolute;
-    left: 690px;
+    left: 650px;
     width: 32px;
     height: 32px;
     object-fit: cover;
@@ -259,14 +259,14 @@ function handleClick(){
 }
 .horarios {
     position: absolute;
-    top: 1610px;
-    left: 550px;
+    top: 1620px;
+    left: 500px;
     object-fit: cover;
     text-align: center;
     padding: 5px 10px;
     color: var(--color-black);
     font-size: var(--font-size-xl);
     font-family: var(--font-gentium-basic);
-    line-height: 2.9;
+    line-height: 3.9;
 }
 </style>

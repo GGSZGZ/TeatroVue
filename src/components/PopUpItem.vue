@@ -343,7 +343,7 @@ const applyPopupStyles = () => {
   text-transform: uppercase;
   display: inline-block;
   top: 76.9px;
-  left: 752.4px;
+  left: 720px;
   white-space: pre-wrap;
   width: 315.3px;
   height: 263px;
@@ -429,11 +429,12 @@ const applyPopupStyles = () => {
   font-size: 30px;
 }
 
+
 th {
   color: var(--neutral-colors-white);
   font-family: var(--font-playfair-display);
   width: 100%;
-  text-align: left;
+  text-align: center;
 }
 .asiento-ocupado {
   cursor: not-allowed;
@@ -443,6 +444,10 @@ th {
 .asiento-text{
   visibility: visible;
 }
+#asientosSeleccionados{
+  text-align: center;
+}
+
 @keyframes dash {
 
     0% {

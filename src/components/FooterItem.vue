@@ -5,18 +5,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let animationId: number | null = null; // ID de la animación
     const canvasWidth = 286; // Ancho específico del canvas
-
+    let maskX = canvasWidth-100;
     if (ctx) {
         canvas.addEventListener('mouseenter', startAnimation);
         canvas.addEventListener('mouseleave', stopAnimation);
 
         drawStop();
-
-        function startAnimation() {
+    }
+    function startAnimation() {
             if (!animationId) {
-                let maskX = canvasWidth-100; 
-
-                function drawMask() {
+                maskX = canvasWidth-100; 
+                drawMask(); // Iniciar la animación
+            }
+        }
+    function drawMask() {
                     ctx.clearRect(0, 0, canvasWidth, canvas.height); // Limpiar el canvas
                     const gradient = ctx.createLinearGradient(canvas.width/3, 0, canvas.width, 0);
                     gradient.addColorStop(0, 'orange');
@@ -90,12 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         animationId = requestAnimationFrame(drawMask); // Solicitar el próximo cuadro de animación
                     }
                 }
-
-                drawMask(); // Iniciar la animación
-            }
-        }
-
-        function drawStop(){
+    function drawStop(){
           const gradient = ctx.createLinearGradient(canvas.width/3, 0, canvas.width, 0);
           gradient.addColorStop(0, 'orange');
           gradient.addColorStop(0.2, 'yellow');
@@ -161,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.stroke();
           ctx.closePath();
         }
-        function stopAnimation() {
+    function stopAnimation() {
             if (animationId) {
                 cancelAnimationFrame(animationId); // Detener la animación
                 animationId = null; // Restablecer el ID de la animación
@@ -169,7 +166,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 drawStop();
             }
         }
-    }
 });
 
 
@@ -249,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    bottom: 70px;
+    bottom: 50px;
     gap: 40px;
     text-align: center;
     font-size: 28px;

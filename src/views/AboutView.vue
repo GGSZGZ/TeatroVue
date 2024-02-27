@@ -93,6 +93,7 @@
     text-align: right;
     border-radius: 103px;
     background-color: var(--color-maroon);
+    
 }
 .text1,.text2{
     position: relative;
@@ -106,6 +107,7 @@
 .text2{
     top: 25px;
     left: -40px;
+    color: var(--neutral-colors-white);
 }
 .bckgn-yllw{
     position: relative;

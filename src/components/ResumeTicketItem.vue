@@ -114,6 +114,7 @@ th {
     width: 50%;
     font-family: var(--font-playfair-display);
     font-size: var(--font-size-9xl);
+    color: var(--color-gray);
 }
 td {
     height: 90px;
