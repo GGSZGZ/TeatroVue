@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 .footer-line-hr {
   position: relative;
-  bottom: 90px;
+  bottom: 80px;
   width: 100%;
   border-color: #000;
 }

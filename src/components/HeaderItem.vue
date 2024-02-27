@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 .header-line-hr {
   position: absolute;
-  top: 101px;
+  top: 109px;
   width: 100%;
   border-color: #000;
 }
