@@ -97,7 +97,7 @@
 }
 .text1,.text2{
     position: relative;
-    top: 30px;
+    top: 15px;
     left: 49px;
     line-height: 34px;
     display: inline-block;
@@ -105,7 +105,7 @@
     height: 255px;
 }
 .text2{
-    top: 40px;
+    top: 25px;
     left: -40px;
     color: var(--neutral-colors-white);
 }
