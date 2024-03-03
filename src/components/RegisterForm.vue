@@ -106,7 +106,7 @@
         <div class="buttons">
           <v-btn class="me-4" type="submit"> Register </v-btn>
       
-          <v-btn @click="handleReset"> Clear </v-btn>
+          <v-btn @click="handleReset" class="clear"> Clear </v-btn>
         </div>
       </form>
 </template>
@@ -134,5 +134,13 @@ label{
 .buttons{
   display: flex;
   justify-content: center;
+}
+.me-4{
+  background: linear-gradient(to right, #99e380, #56ccf2); /* Cambia los colores según tu preferencia */
+  color: white;
+}
+.clear{
+  background: linear-gradient(to right, #450054, #db0606); /* Cambia los colores según tu preferencia */
+  color: white;
 }
 </style>
