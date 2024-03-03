@@ -22,6 +22,9 @@ import "./assets/main.css";
     <template #home><RouterLink to="/" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Home</RouterLink></template>
     <template #about><RouterLink to="/about" style="text-decoration: none; color: var(--neutral-colors-headings-black);">About</RouterLink></template>
     <template #contact><RouterLink to="/contact" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Contact</RouterLink></template>
+    <template #iconregister>
+      <RouterLink to="/login&register" style="text-decoration: none;"><img alt="" src="./assets/userIcon.png" class="register-icon"/></RouterLink>
+    </template>
     <template #logosearch>
       <img alt="" src="./assets/searchIcon.png" class="busqueda-1-icon"/>
     </template>
@@ -46,9 +49,6 @@ import "./assets/main.css";
       <template #about><RouterLink to="/about" style="text-decoration: none; color: var(--neutral-colors-headings-black);">About</RouterLink></template>
       <template #contactIcon><RouterLink to="/contact" style="text-decoration: none;"><img alt="" src="./assets/phoneIcon.png" style="text-decoration: none;" class="icon"></RouterLink></template>
       <template #contact><RouterLink to="/contact" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Contact</RouterLink></template>
-      <template #logosearch>
-        <img alt="" src="./assets/searchIcon.png" class="busqueda-1-icon"/>
-      </template>
       <template #hrindex></template>
       <!--Redes Sociales-->
       <template #facebook><img alt="" src="./assets/facebook.svg" ></template>
@@ -92,6 +92,14 @@ footer{
   object-fit: cover;
   left:92%;
   }
+.register-icon{
+  position: absolute;
+  top: 39px;
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  left: 87%;
+}
 .icon{
   width:40px;
   height: 39px;

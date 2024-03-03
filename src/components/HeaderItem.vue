@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <slot name="hrindex">
         <hr class="header-line-hr">
     </slot>
-    
+    <slot name="iconregister"></slot>
     <slot name="logosearch"></slot>
 
 
