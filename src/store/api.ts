@@ -1,10 +1,11 @@
 import { defineStore, createPinia } from 'pinia';
+import { createPersistedState } from 'pinia-plugin-persistedstate';
 
 // Creamos la instancia de Pinia
 const pinia = createPinia();
 
 // Exportamos la tienda
-export const useApiStore = defineStore('plays', {
+export const useApiStore = defineStore('teatro', {
   state: () => ({
     loggedInUser: null,
     admin: false,
@@ -66,6 +67,7 @@ export const useApiStore = defineStore('plays', {
       this.admin = boleano;
     }
   },
+  plugins: [createPersistedState()],
 });
 
 export { pinia };

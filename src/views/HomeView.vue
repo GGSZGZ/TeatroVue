@@ -58,6 +58,7 @@ function splitObras(obras: any[]){
   const navigateToObra = (id: number) => {
     router.push({ name: 'card', params: { id: id.toString() } });
   };
+  
 </script>
 <template>
 

@@ -21,8 +21,10 @@
         const user = useApiStore().loggedInUser;
         if(element.email.indexOf('@svalero') !==-1){
           useApiStore().setUserAdmin(true);
+          localStorage.setItem('admin', true);
         }else{
           useApiStore().setUserAdmin(false);
+          localStorage.setItem('admin', false);
         }
       } 
     });
