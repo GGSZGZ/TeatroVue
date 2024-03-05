@@ -3,15 +3,33 @@
 import { onMounted } from 'vue';
 import FormTicketItem from '../components/FormTicketItem.vue'
 import ResumeTicketItem from '../components/ResumeTicketItem.vue'
+import { useApiStore, pinia } from '../store/api';
+import { ref } from 'vue';
+const dataLoaded = ref(false);
+const play = ref();
+
+   //obtener el id mediante la url
+   const currentUrl = window.location.href;
+  const urlParts = currentUrl.split('/');
+  const idObra = urlParts[urlParts.length - 1];
+
+const fetchPlay = async () => {
+  try {
+    play.value = await useApiStore(pinia).fetchPlay(Number(idObra));
+    dataLoaded.value=true;
+    
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 onMounted(() => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    fetchPlay();
 });
 
 
-    //obtener el id mediante la url
-  const currentUrl = window.location.href;
-  const urlParts = currentUrl.split('/');
-  const idObra = urlParts[urlParts.length - 1];
+ 
   
   const getImgSrc = (index:number) => {
   return `../src/assets/imgsShop${idObra}/img${index}.png`;
@@ -23,8 +41,8 @@ onMounted(() => {
 
 
 <template>
-    <main>
-      <div class="title-compra">Don Juan Tenorio</div>
+    <main v-if="dataLoaded">
+      <div class="title-compra">{{ play.title }}</div>
       
       <!-- formulario -->
       <FormTicketItem/>

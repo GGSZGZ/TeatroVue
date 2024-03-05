@@ -6,7 +6,10 @@ import GenreItem from '@/components/GenreItem.vue'
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import PopUpItemVue from '@/components/PopUpItem.vue';
+import { useApiStore, pinia } from '../store/api';
 
+
+const dataLoaded = ref(false);
 const route = useRouter();
 const obraId = ref('');
 
@@ -15,6 +18,7 @@ onMounted(() => {
   
   const idFromRoute = route.currentRoute.value.params.id;
   obraId.value = Array.isArray(idFromRoute) ? idFromRoute[0] : idFromRoute.toString();
+  fetchPlay();
 });
 const showPopup = ref(false);
 const togglePopUp = () => {
@@ -23,16 +27,29 @@ const togglePopUp = () => {
 const navigateToTickets = () =>{
   route.push({ name: 'ticket', params: { id: obraId.value.toString() } });
 }
+
+const play = ref();
+
+const fetchPlay = async () => {
+  try {
+    play.value = await useApiStore(pinia).fetchPlay(Number(obraId.value));
+    dataLoaded.value=true;
+    
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 </script>
 
 <template>
-  <main>
-    <h3 class="heading">Don Juan Tenorio</h3>
+  <main v-if="dataLoaded">
+    <h3 class="heading">{{ play.title }}</h3>
     <WeekScheduleItem />
     <img class="image-obra" :src="'../src/assets/img'+obraId+'.png'"/>
     <section class="sinopsis">
       <div class="sinopsis-child">
-        <b class="sinopsis-text" id="sinopsis-1"></b>
+        <b class="sinopsis-text" id="sinopsis-1">{{ play.synopsis }}</b>
       </div>
       <h3 class="sinopsi">Sinopsis</h3>
     </section>

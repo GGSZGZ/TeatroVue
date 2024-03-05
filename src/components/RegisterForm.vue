@@ -1,7 +1,48 @@
 <script setup lang="ts">
-  import { useField, useForm } from 'vee-validate';
-  import { ref } from 'vue';
+import { useField, useForm } from 'vee-validate';
+import { ref } from 'vue';
+import { useApiStore, pinia } from '../store/api';
+const existingUser = ref(false);
 
+function proveExistingUser(users:any,values : any){
+  users.forEach((element:any) => {
+    if(element.email === values.email || element.tlf==values.phone){
+      existingUser.value=true;
+    } 
+  });
+
+  if(existingUser.value==false){
+    fetchPostUser(values);
+    handleReset();
+    }else{
+      alert('Este usuario ya se ha registrado');
+    }
+}
+
+
+  const fetchPostUser = async (values: any) => {
+    try {
+      const userDTO = {
+      username: values.name,
+      surname: values.surname,
+      passwd: values.passwd,
+      email: values.email,
+      tlf: Number(values.phone)
+  };
+      await useApiStore(pinia).fetchPostUser(userDTO);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const fetchGetUser = async (values:any) => {
+    try {
+     const users= await useApiStore(pinia).fetchUsers();
+     proveExistingUser(users,values);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   const { handleSubmit, handleReset } = useForm({
     validationSchema: {
       name(value:any) {
@@ -15,7 +56,7 @@
         return 'Name needs to be at least 2 characters.'
       },
       phone(value:any) {
-        if (value?.trim().length > 9 && /[0-9-]+/.test(value)) return true
+        if (value?.trim().length == 9 && /[0-9-]+/.test(value)) return true
 
         return 'Phone number needs to be at least 9 digits.'
       },
@@ -49,8 +90,10 @@
   const visible = ref(false);
 
   const submit = handleSubmit(values => {
-    alert(JSON.stringify(values, null, 2))
-  })
+    existingUser.value=false;
+    fetchGetUser(values);
+  });
+  submit
 </script>
 <template>
       <form @submit.prevent="submit">
