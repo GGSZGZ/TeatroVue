@@ -24,6 +24,37 @@ export const useApiStore = defineStore('plays', {
         console.log("Error al obtener los datos");
       }
     },
+    async fetchUsers() {
+      try {
+        const response = await fetch("https://localhost:7121/user");
+        return await response.json();
+      } catch (error) {
+        console.log("Error al obtener los datos");
+
+      }
+    },
+    async fetchPostUser(user:any) {
+      try {
+        const response = await fetch('https://localhost:7121/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(user),
+        });
+    
+        if (!response.ok) {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+          return null;
+        }
+    
+        return await response.json();
+      } catch (error) {
+        console.error('Error al enviar los datos:', error);
+        return null;
+      }
+    }
+    
   },
 });
 
