@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref } from 'vue';
+  import { ref} from 'vue';
   import { useApiStore } from '../store/api';
 
 //import css
@@ -172,22 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 drawStop();
             }
         }
-
-        var admin = localStorage.getItem('admin');
-        const adminH3 = ref<HTMLElement | null>(null);
-        adminH3.value =document.querySelector('.sections .admin')! as HTMLElement;
-        console.log(admin)
-        if(admin==true){
-          adminH3.value.style.display = "block";  
-        }else{
-          adminH3.value.style.display = "none";
-        }
-});
-
-
-
- 
-
+      });
+      
 </script>
 <template>
 <link
@@ -288,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
   line-height: 18px;
   font-weight: 400;
   font-family: inherit;
+  display: none;
 }
  
 

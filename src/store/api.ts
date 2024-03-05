@@ -1,5 +1,4 @@
 import { defineStore, createPinia } from 'pinia';
-import { createPersistedState } from 'pinia-plugin-persistedstate';
 
 // Creamos la instancia de Pinia
 const pinia = createPinia();
@@ -62,12 +61,8 @@ export const useApiStore = defineStore('teatro', {
 
     setLoggedInUser(user: any){
       this.loggedInUser = user;
-    },
-    setUserAdmin(boleano: boolean){
-      this.admin = boleano;
     }
   },
-  plugins: [createPersistedState()],
 });
 
 export { pinia };
