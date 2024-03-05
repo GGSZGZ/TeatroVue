@@ -5,6 +5,10 @@ const pinia = createPinia();
 
 // Exportamos la tienda
 export const useApiStore = defineStore('plays', {
+  state: () => ({
+    loggedInUser: null,
+    admin: false,
+  }),
   actions: {
     async fetchPlays() {
       try {
@@ -53,8 +57,14 @@ export const useApiStore = defineStore('plays', {
         console.error('Error al enviar los datos:', error);
         return null;
       }
+    },
+
+    setLoggedInUser(user: any){
+      this.loggedInUser = user;
+    },
+    setUserAdmin(boleano: boolean){
+      this.admin = boleano;
     }
-    
   },
 });
 
