@@ -4,7 +4,7 @@ import { defineStore, createPinia } from 'pinia';
 const pinia = createPinia();
 
 // Exportamos la tienda
-export const useApiStore = defineStore('plays', {
+export const useApiStore = defineStore('teatro', {
   state: () => ({
     loggedInUser: null,
     admin: false,
@@ -61,9 +61,6 @@ export const useApiStore = defineStore('plays', {
 
     setLoggedInUser(user: any){
       this.loggedInUser = user;
-    },
-    setUserAdmin(boleano: boolean){
-      this.admin = boleano;
     }
   },
 });

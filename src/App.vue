@@ -19,6 +19,7 @@ import "./assets/main.css";
     <template #logosearchtexto>
       <img alt="" src="./assets/logoTextIcon.png" class="logosolo-texto-1"/>
     </template>
+    <template #admin><RouterLink to="/admin" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Admin</RouterLink></template>
     <template #home><RouterLink to="/" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Home</RouterLink></template>
     <template #about><RouterLink to="/about" style="text-decoration: none; color: var(--neutral-colors-headings-black);">About</RouterLink></template>
     <template #contact><RouterLink to="/contact" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Contact</RouterLink></template>

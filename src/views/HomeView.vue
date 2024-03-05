@@ -10,6 +10,9 @@ import { useApiStore, pinia } from '../store/api';
 
 const dataLoaded = ref(false);
 const plays = ref([]);
+const adminH3 = ref<HTMLElement | null>(null);
+      adminH3.value = document.querySelector('.sections .admin')! as HTMLElement;
+
 
 const fetchPlays = async () => {
   try {
@@ -58,6 +61,27 @@ function splitObras(obras: any[]){
   const navigateToObra = (id: number) => {
     router.push({ name: 'card', params: { id: id.toString() } });
   };
+  
+      if(localStorage.getItem('reloadIndicator')=='true'){
+          // window.location.reload();
+          
+          
+          navItems();
+        }
+        
+        function navItems(){
+        
+          if (localStorage.getItem('admin')=='true') {
+            adminH3.value!.style.display = 'block';
+            localStorage.setItem('reloadIndicator','false');
+          } else {
+            adminH3.value!.style.display = 'none';
+            localStorage.setItem('reloadIndicator','false');
+      }
+        }
+
+
+
 </script>
 <template>
 

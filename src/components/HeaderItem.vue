@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { ref} from 'vue';
+  import { useApiStore } from '../store/api';
 
 //import css
 import "../assets/main.css";
@@ -170,10 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 drawStop();
             }
         }
-});
-
-
-
+      });
+      
 </script>
 <template>
 <link
@@ -189,6 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 
     <nav class="sections">
+        <h3 class="admin">
+          <slot name="admin"></slot>
+        </h3>
         <h3 class="home">
           <slot name="home"></slot>
         </h3>
@@ -265,7 +268,14 @@ document.addEventListener('DOMContentLoaded', () => {
   font-family: inherit;
   cursor: pointer;
 }
-
+.admin{
+  margin: 0;
+  position: relative;
+  line-height: 18px;
+  font-weight: 400;
+  font-family: inherit;
+  display: none;
+}
  
 
 </style>
