@@ -1,18 +1,66 @@
 <script setup lang="ts">
   import { useField, useForm } from 'vee-validate';
+  import { useRouter } from 'vue-router';
   import { ref } from 'vue';
+  import { useApiStore, pinia } from '../store/api';
+  const existingUser = ref(false);
+
+  //Home
+  const router = useRouter();
+  const navigateToHome = () => {
+    if(existingUser.value==true){
+      router.push({ name: 'home' });
+    }
+  };
+
+  function proveExistingUser(users:any,values : any){
+    users.forEach((element:any) => {
+      if((element.email === values.emailTlf || element.tlf==values.emailTlf) && element.passwd === values.passwd){
+        existingUser.value=true;
+        useApiStore().setLoggedInUser(element);
+        const user = useApiStore().loggedInUser;
+        if(element.email.indexOf('@svalero') !==-1){
+          useApiStore().setUserAdmin(true);
+        }else{
+          useApiStore().setUserAdmin(false);
+        }
+      } 
+    });
+
+    if(existingUser.value==false){
+        alert('Este usuario no se ha registrado');
+      }else{
+        handleReset();
+        alert('El usuario se ha logeado correctamente');
+        navigateToHome();
+      }
+    }
+
+
+  const fetchGetUser = async (values:any) => {
+    try {
+     const users= await useApiStore(pinia).fetchUsers();
+     proveExistingUser(users,values);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  
 
   const { handleSubmit, handleReset } = useForm({
     validationSchema: {
-      phone(value:any) {
-        if (value?.trim().length > 9 && /[0-9-]+/.test(value)) return true
+      emailTlf(value:any) {
+        if(value && value.indexOf('@') !==-1){
+          if (/^[a-z0-9.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
 
-        return 'Phone number needs to be at least 9 digits.'
-      },
-      email(value:any) {
-        if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+          return 'Must be a valid e-mail.'
+        } else{
+          if (value?.trim().length == 9 && /[0-9-]+/.test(value)) return true
 
-        return 'Must be a valid e-mail.'
+          return 'Phone number needs to be 9 digits.'
+        }
+        
       },
       checkbox(value:any) {
         if (value === '1') return true
@@ -21,8 +69,7 @@
       },
       passwd(value:any) {
         if (
-          /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[^\w\s])/.test(value) &&
-          value.length >= 7
+          value?.length >= 7
         )
           return true
 
@@ -30,14 +77,14 @@
       },
     },
   })
-  const phone = useField('phone')
-  const email = useField('email')
+  const emailTlf = useField('emailTlf')
   const checkbox = useField('checkbox')
   const passwd = useField('passwd')
   const visible = ref(false);
 
   const submit = handleSubmit(values => {
-    alert(JSON.stringify(values, null, 2))
+    existingUser.value=false;
+    fetchGetUser(values);
   })
 </script>
 <template>
@@ -45,17 +92,10 @@
         <label for="chk" aria-hidden="true">Login</label>
     
         <v-text-field
-          v-model="email.value.value"
-          :error-messages="email.errorMessage.value"
-          label="Correo electrónico"
-          placeholder="correo@ejemplo.com"
-        ></v-text-field>
-    
-        <v-text-field
-          v-model="phone.value.value"
-          :error-messages="phone.errorMessage.value"
-          label="Núm. Teléfono"
-          placeholder="+620 XXX XXX"
+          v-model="emailTlf.value.value"
+          :error-messages="emailTlf.errorMessage.value"
+          label="Correo electrónico/Núm.Teléfono"
+          placeholder="correo@ejemplo.com/+620 XXX XXX"
         ></v-text-field>
     
         <v-text-field
@@ -77,7 +117,7 @@
         >
         </v-checkbox>
         <div class="buttons">
-          <v-btn class="me-4" type="submit"> Login </v-btn>
+          <v-btn class="me-4" type="submit">Login</v-btn>
       
           <v-btn @click="handleReset" class="clear"> Clear </v-btn>
         </div>
