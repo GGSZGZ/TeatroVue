@@ -5,6 +5,7 @@ import FooterItem from './components/FooterItem.vue';
 //import css
 import "./assets/main.css";
 
+
 </script>
 
 <template>
@@ -25,9 +26,6 @@ import "./assets/main.css";
     <template #contact><RouterLink to="/contact" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Contact</RouterLink></template>
     <template #iconregister>
       <RouterLink to="/login&register" style="text-decoration: none;"><img alt="" src="./assets/userIcon.png" class="register-icon"/></RouterLink>
-    </template>
-    <template #logosearch>
-      <img alt="" src="./assets/searchIcon.png" class="busqueda-1-icon"/>
     </template>
     <template #hrindex></template>
     
@@ -85,14 +83,6 @@ footer{
   width: 315px;
   height: 109px;
 }
-.busqueda-1-icon{
-  position: absolute;
-  top: 39px;
-  width: 25px;
-  height: 25px;
-  object-fit: cover;
-  left:92%;
-  }
 .register-icon{
   position: absolute;
   top: 39px;
