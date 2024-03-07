@@ -58,6 +58,32 @@ export const useApiStore = defineStore('teatro', {
         return null;
       }
     },
+    async fetchPutUser(idUser: number, notes: string) {
+      try {
+        const response = await fetch(`https://localhost:7121/user/${idUser}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ notes }),
+        });
+    
+        if (!response.ok) {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+          return null;
+        }
+    
+        const responseBody = await response.text();
+        if (!responseBody) {
+          return null;
+        }
+    
+        return JSON.parse(responseBody);
+      } catch (error) {
+        console.error('Error al enviar los datos:', error);
+        return null;
+      }
+    },
     setLoggedInUser(user: any){
       localStorage.setItem('user', JSON.stringify(user));
     }
