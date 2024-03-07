@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+  const router = useRouter();
+
+
+
 
 const nombre = ref('');
 const apellidos = ref('');
@@ -16,13 +21,28 @@ if (usuario !== null) {
   telefono.value = usuario.tlf || '';
   correo.value = usuario.email || '';
   direccion.value = usuario.direction || '';
-  payment.value= usuario.payment || '';
 }
-
 
 const goBack = () => {
   window.history.back();
 };
+
+const user=localStorage.getItem('user');
+
+const navigateToSucces = async() => {
+    if(nombre.value!='' && apellidos.value!='' && correo.value!='' && direccion.value!='' && telefono.value!='' && payment.value!=''){
+    if(user!=null){
+        console.log(payment);
+        
+    router.push({ name: 'success' });
+    }else{
+        alert('Debes iniciar sesión primero')
+    }
+    }else{
+        alert('Faltan campos por completar')
+    }
+};
+
 
 </script>
 <template>
@@ -44,7 +64,7 @@ const goBack = () => {
         </div>
         <div class="form-wrapper3">
           <select v-model="payment" class="input7" id="Payment">
-            <option value="" disabled="false" selected="false">Método de Pago</option>
+            <option value="" disabled="false" selected="false">Seleccione</option>
             <option value="paypal">Paypal</option>
             <option value="creditCard">Tarjeta de Credito</option>
             <option value="debitCard">Tarjeta de Debito</option>
@@ -57,9 +77,9 @@ const goBack = () => {
           <b @click="goBack" class="button-cancelar">Cancelar</b>
         </div>
         <div class="compra-realizada2" id="compraRealizadaContainer1">
-            <RouterLink to="/success" style="text-decoration: none; color: var(--neutral-colors-white);">
-          <b class="button-comprar">Comprar</b>
-        </RouterLink>
+            
+          <b class="button-comprar" @click="navigateToSucces">Comprar</b>
+        
         </div>
 
         <b class="mtodo-de-pago">Método de pago</b>
