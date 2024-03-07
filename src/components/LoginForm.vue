@@ -218,6 +218,5 @@ label{
 }
 .logOut:hover::after, .logOut:focus::after{
   opacity: 1;
-  
 }
 </style>
