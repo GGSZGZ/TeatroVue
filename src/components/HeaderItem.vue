@@ -275,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
   line-height: 18px;
   font-weight: 400;
   font-family: inherit;
+  display: none;
 }
 .container {
   position: absolute;
