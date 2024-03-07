@@ -89,6 +89,17 @@
     existingUser.value=false;
     fetchGetUser(values);
   })
+
+  const logOut = () =>{
+    if(localStorage.getItem('user')!=JSON.stringify(null)){
+      localStorage.setItem('user', JSON.stringify(null));
+      localStorage.setItem('admin', "false");
+      alert('Se ha cerrado sesión');
+    }else{
+      alert('Todavía no se ha logueado');
+    }
+    
+  }
 </script>
 <template>
     <form @submit.prevent="submit">
@@ -123,6 +134,10 @@
           <v-btn class="me-4" type="submit">Login</v-btn>
       
           <v-btn @click="handleReset" class="clear"> Clear </v-btn>
+          
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <v-btn @click="logOut" class="logOut"> Log Out </v-btn>
         </div>
       </form>
 </template>
@@ -161,5 +176,48 @@ label{
 .clear{
   background: linear-gradient(to right, #450054, #db0606); /* Cambia los colores según tu preferencia */
   color: white;
+}
+.logOut{
+  margin-top: 20px;
+  width: auto;
+  cursor: pointer;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: hsl(0, 100%, 62%);
+  border: hsl(0, 100%, 62%) 0.125em solid;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  box-shadow: inset 0 0 0.5em 0 hsl(0, 100%, 62%), 0 0 0.5em 0 hsl(0, 100%, 62%);
+  background-color: transparent;
+  box-sizing: border-box;
+}
+
+.logOut::before{
+  background-color: hsl(0, 100%, 62%);
+  transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+  filter: blur(1em);
+  opacity: 0.7;
+}
+
+.logOut::after{
+  box-shadow: 0 0 20px 0.5em hsl(0, 100%, 62%);
+  opacity: 0;
+  background-color: hsl(0, 100%, 62%);
+  z-index: -1;
+  transition: opacity 100ms linear;
+}
+.logOut:hover, .logOut:focus{
+  color: hsl(0, 0%, 0%);
+  background-color: hsl(0, 100%, 62%);
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+  text-shadow: none;
+
+}
+.logOut:hover::before, .logOut:focus::before{
+  opacity: 1;
+}
+.logOut:hover::after, .logOut:focus::after{
+  opacity: 1;
+  
 }
 </style>
