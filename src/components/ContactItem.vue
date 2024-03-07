@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-
+import { useApiStore, pinia } from '../store/api';
 const nombre = ref('');
 const telefono = ref('');
 const correo = ref('');
 const direccion = ref('');
+const notes = ref('');
 const usuario =JSON.parse(localStorage.getItem('user')!);
 const user=localStorage.getItem('user');
 
@@ -16,12 +17,16 @@ if (usuario !== null) {
 }
 function resetForm(){
     if(user!=null){
-    if(nombre.value!='' && telefono.value!='' && correo.value!=''  && direccion.value!=''){
+    if(nombre.value!='' && telefono.value!='' && correo.value!=''  && direccion.value!='' && notes.value!=''){
+        const idUser= JSON.parse(user).id;
+        useApiStore(pinia).fetchPutUser(idUser,notes.value)
         nombre.value = '';
         telefono.value = '';
         correo.value = '';
         direccion.value = '';
+        notes.value='';
         alert('Gracias por contactar con nosotros!!')
+        
     }else{
         alert('Falta algun campo por rellenarse');
     }
@@ -70,7 +75,7 @@ function resetForm(){
                 </div>
                 <div class="px4">
                     <div class="label">Dejanos un mensaje</div>
-                    <textarea id="textarea" class="text-area" wrap="soft" placeholder="Porfavor, ponganos una descripción del problema..."></textarea>
+                    <textarea v-model="notes" id="textarea" class="text-area" wrap="soft" placeholder="Porfavor, ponganos una descripción del problema..."></textarea>
                 </div>
             </div>
         </form>
