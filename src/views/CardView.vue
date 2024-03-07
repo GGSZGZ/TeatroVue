@@ -56,7 +56,7 @@ const fetchPlay = async () => {
     <!-- horario -->
     <TicketScheduleItem @togglePopUp="togglePopUp"/>
 
-    <DirectorBiographyItem/>
+    <DirectorBiographyItem :director="play.director"/>
 
     <GenreItem/>
 

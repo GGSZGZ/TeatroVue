@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const nombre = ref('');
+const telefono = ref('');
+const correo = ref('');
+const direccion = ref('');
+const usuario =JSON.parse(localStorage.getItem('user')!);
+
+
+if (usuario !== null) {
+  nombre.value = usuario.username + ' ' + usuario.surname || '';
+  telefono.value = usuario.tlf || '';
+  correo.value = usuario.email || '';
+  direccion.value = usuario.direction || '';
+}
+
+</script>
 <template>
     <main>
         <form class="form-wrapper" id="formulario">
@@ -7,14 +25,14 @@
                         <div class="px">
                             <div class="label">Nombre</div>
                             <div class="input-text">
-                                <input type="text" class="input" placeholder="Juan*" id="Nombre">
+                                <input v-model="nombre" type="text" class="input" placeholder="Juan*" id="Nombre">
                                 <img class="usuario-1-icon" alt="" src="../assets/userIcon.png">
                             </div>
                         </div>
                         <div class="px">
                             <div class="label">Teléfono</div>
                             <div class="input-text">
-                                <input type="text" class="input" placeholder="+34 624 945 378*" id="Telephone">
+                                <input v-model="telefono" type="text" class="input" placeholder="+34 624 945 378*" id="Telephone">
                                 <img class="telefono-2-icon" alt="" src="../assets/phoneIcon.png">
                             </div>
                         </div>
@@ -23,14 +41,14 @@
                         <div class="px2">
                             <div class="label">Correo</div>
                             <div class="input-text2">
-                                <input type="text" class="input" placeholder="ejemplo@gmail.com*" id="Email">
+                                <input v-model="correo" type="text" class="input" placeholder="ejemplo@gmail.com*" id="Email">
                                 <img class="sobre-1-icon" alt="" src="../assets/mailIcon.png">
                             </div>
                         </div>
                         <div class="px">
                             <div class="label">Dirección</div>
                             <div class="input-text2">
-                                <input type="text" class="input" placeholder="C/Maria Zambrano, 25*" id="Location">
+                                <input v-model="direccion" type="text" class="input" placeholder="C/Maria Zambrano, 25*" id="Location">
                                 <img class="marcador-1-icon" alt="" src="../assets/mapIcon.png">
                             </div>
                         </div>

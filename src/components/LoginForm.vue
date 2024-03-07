@@ -9,8 +9,6 @@
   const router = useRouter();
   const navigateToHome = async() => {
     if(existingUser.value==true){
-      
-      localStorage.setItem('reloadIndicator', 'true');
         router.push({ name: 'home' });
     }
   };
@@ -19,7 +17,11 @@
     users.forEach((element:any) => {
       if((element.email === values.emailTlf || element.tlf==values.emailTlf) && element.passwd === values.passwd){
         existingUser.value=true;
-        useApiStore().setLoggedInUser(element);
+        localStorage.setItem('user', JSON.stringify(element));
+        // useApiStore().setLoggedInUser();
+        // console.log(useApiStore().loggedInUser);
+        // console.log(JSON.parse(localStorage.getItem('user')!));
+        
         if(element.email.indexOf('@svalero') !==-1){
           localStorage.setItem('admin', "true");
         }else{

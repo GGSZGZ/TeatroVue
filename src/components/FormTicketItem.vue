@@ -1,8 +1,28 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
+const nombre = ref('');
+const apellidos = ref('');
+const telefono = ref('');
+const correo = ref('');
+const direccion = ref('');
+const payment = ref('');
+const usuario =JSON.parse(localStorage.getItem('user')!);
+
+
+if (usuario !== null) {
+  nombre.value = usuario.username || '';
+  apellidos.value= usuario.surname || '';
+  telefono.value = usuario.tlf || '';
+  correo.value = usuario.email || '';
+  direccion.value = usuario.direction || '';
+  payment.value= usuario.payment || '';
+}
+
+
 const goBack = () => {
   window.history.back();
 };
-
 
 </script>
 <template>
@@ -15,22 +35,22 @@ const goBack = () => {
             <img class="container-mark-right" alt="" src="../assets/container.svg">
             <img class="container-mark-left" alt="" src="../assets/container1.svg">
 
-            <input type="text" class="nombre" placeholder="Nombre*" id="Nombre">
-            <input type="text" class="correo" placeholder="ejemplos@gmail.com*" id="Correo">
-            <input type="text" class="telefono" placeholder="+34 654 158 786*" id="Tlf">
+            <input v-model="nombre" type="text" class="nombre" placeholder="Nombre*" id="Nombre">
+            <input v-model="correo" type="text" class="correo" placeholder="ejemplos@gmail.com*" id="Correo">
+            <input v-model="telefono" type="text" class="telefono" placeholder="+34 654 158 786*" id="Tlf">
         </div>
         <div class="form-wrapper2">
-          <input type="text" class="input7" placeholder="Apellidos*" id="Apellidos">
+          <input v-model="apellidos" type="text" class="input7" placeholder="Apellidos*" id="Apellidos">
         </div>
         <div class="form-wrapper3">
-          <select class="input7" id="Payment">
+          <select v-model="payment" class="input7" id="Payment">
             <option value="" disabled="false" selected="false">Método de Pago</option>
             <option value="paypal">Paypal</option>
             <option value="creditCard">Tarjeta de Credito</option>
             <option value="debitCard">Tarjeta de Debito</option>
         
         
-          </select><input type="text" class="input8" placeholder="C/Maria Bendito, 25*" id="Calle">
+          </select><input v-model="direccion" type="text" class="input8" placeholder="C/Maria Bendito, 25*" id="Calle">
         </div>
         
         <div class="compra-realizada1" id="compraRealizadaContainer">

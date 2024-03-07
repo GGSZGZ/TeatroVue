@@ -69,7 +69,7 @@ function splitObras(obras: any[]){
             adminH3.value!.style.display = 'none';
            
           }
-          console.log(JSON.parse(localStorage.getItem('user')));
+          // console.log(JSON.parse(localStorage.getItem('user')));
 </script>
 <template>
 

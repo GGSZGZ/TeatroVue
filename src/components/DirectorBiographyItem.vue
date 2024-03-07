@@ -1,17 +1,17 @@
+<script setup lang="ts">
+
+  const props=defineProps<{
+    director?:string
+}>()
+    
+</script>
+
 <template>
 
   <section class="director">
         <div class="director-child"></div>
         <h3 class="director1">Director</h3>
-        <b class="director-text">Carlos Martín, director de este 'Don Juan Tenorio' .Graduado en la
-          Escuela Municipal de Teatro de Zaragoza y Diplomado en Dirección
-          escénica por la Scuola d´Arte Drammatica Paolo Grassi de Milán
-          (Italia), es desde 1994 Director Artístico de Teatro del Temple.
-          Director Artístico del Teatro de las Esquinas desde 2011, y Director
-          Artístico de Temple Audiovisuales, labor que sigue desarrollando en la
-          actualidad. Sus espectáculos han sido representados en teatros de gran
-          parte de Latinoamérica, Nueva York, Miami, París, Portugal, Italia
-          Bélgica.</b>
+        <b class="director-text">{{ director }}</b>
         <img class="image-director" alt="" src="../assets/directorPic.png">
       </section>
 
