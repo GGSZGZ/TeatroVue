@@ -1,3 +1,12 @@
+<script setup lang="ts">
+const horario=localStorage.getItem('horario');
+const importe=localStorage.getItem('importe')
+const cantAsientos=localStorage.getItem('cantidadAsientos')
+
+
+
+
+</script>
 <template>
 <div class="resumen">
         <div class="resumen1">Resumen</div>
@@ -6,7 +15,7 @@
         <div class="resumen-inner"></div>
         
         <b class="horario">Horario</b>
-        <b class="hora" id="horarioFin">9:30 AM</b>
+        <b class="hora" id="horarioFin">{{ horario }}</b>
         <table id="resumenAsientos" class="fila-butaca-importe">
           <thead>
             <tr>
@@ -16,8 +25,8 @@
           </thead>
           <tbody>
             <tr>
-              <td id="cantidadAss"></td>
-              <td id="importe">null€</td>
+              <td id="cantidadAss">{{ cantAsientos }}</td>
+              <td id="importe">{{ importe }} €</td>
             </tr>
           </tbody>
         </table>

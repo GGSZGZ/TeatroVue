@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { defineProps, onMounted, onUpdated} from 'vue';
-
+let asientosCount=0;
+function navigateToTickets(){
+if(asientosCount!=0){
+  emits('navigateToTickets');
+}else{
+  alert('Debes al menos seleccionar una butaca');
+}
+}
 const props = defineProps({
   show: Boolean
 });
@@ -49,6 +56,7 @@ const applyPopupStyles = () => {
       const salaCine = document.getElementById('sala-cine')!;
       const cantidad = document.getElementById('cantidad') as HTMLElement;
       const precio = document.getElementById('importe') as HTMLElement;
+      
       salaCine.innerHTML = ''; // Elimina todos los elementos dentro del contenedor de la sala de cine
       importe = 0; // Reinicia el importe
       cantidadAsientos = 0; // Reinicia la cantidad de asientos
@@ -221,6 +229,7 @@ const applyPopupStyles = () => {
                                     const indice = asientosSeleccionadosArray.indexOf((numeroFila - 1) * columnas + (numeroColumna - numeroFila) + 1);
                                     asientosSeleccionadosArray.splice(indice, 1);
                                     importe -= 25;
+                                    asientosCount--;
                                     cantidad.textContent = "ENTRADAS SELECCIONADAS: " + asientosSeleccionadosImage.length;
                                     precio.textContent = "IMPORTE TOTAL: " + importe + "€";
                                 } else {
@@ -233,7 +242,10 @@ const applyPopupStyles = () => {
                                     importe = asientosSeleccionadosImage.length * 25;
                                     cantidad.textContent = "ENTRADAS SELECCIONADAS: " + asientosSeleccionadosImage.length;
                                     precio.textContent = "IMPORTE TOTAL: " + importe + "€";
+                                    asientosCount=asientosSeleccionadosImage.length;
                                 }
+                                localStorage.setItem('importe', importe.toString());
+                                localStorage.setItem('cantidadAsientos', asientosCount.toString());
                                 if(!this.classList.contains('asiento-seleccionado')){
                                   pathBlack = asiento.querySelectorAll('.yellow') as any;
                                   pathBlack.forEach((pathBlack : any) => {
@@ -281,7 +293,7 @@ const applyPopupStyles = () => {
           </div>
         </section>
         <div class="master-primary-button9" id="popupmasterPrimaryButton">
-          <b class="button-comprar" @click="emits('navigateToTickets')">Comprar</b>
+          <b class="button-comprar" @click="navigateToTickets">Comprar</b>
         </div>
         <div class="master-primary-button10" id="popupmasterPrimaryButton1">
           <b class="button-cancelar" @click="emits('togglePopUp')">Cancelar</b>

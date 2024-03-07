@@ -6,8 +6,10 @@ const props = defineProps({
 });
 const emits = defineEmits(['togglePopUp']);
 
-function handleClick(){
+function handleClick(id:number){
   emits('togglePopUp');
+  const horario=document.getElementById('hora'+id)!.textContent;
+  localStorage.setItem('horario',horario!);
 };
 
 </script>
@@ -32,17 +34,17 @@ function handleClick(){
       </section>
       
       <div class="botonera">
-      <button class="button-seleccionar" id="buttonSeleccionar" @click="handleClick()">
+      <button class="button-seleccionar" id="buttonSeleccionar" @click="handleClick(1)">
         <div class="master-primary-button4">
         </div>
         <div class="seleccionar">Seleccionar</div>
       </button>
-      <button class="button-seleccionar1" id="buttonSeleccionar1" @click="handleClick()">
+      <button class="button-seleccionar1" id="buttonSeleccionar1" @click="handleClick(2)">
         <div class="master-primary-button4">
         </div>
         <div class="seleccionar">Seleccionar</div>
       </button>
-      <button class="button-seleccionar2" id="buttonSeleccionar2" @click="handleClick()">
+      <button class="button-seleccionar2" id="buttonSeleccionar2" @click="handleClick(3)">
         <div class="master-primary-button4">
         </div>
         <div class="seleccionar">Seleccionar</div>
