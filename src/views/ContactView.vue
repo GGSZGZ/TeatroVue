@@ -11,9 +11,7 @@ import { onMounted } from 'vue';
         <div class="titulo">Facilítanos tus datos y contactaremos contigo</div>
         <MapContactItem/>
         <ContactItem />
-        <div class="send-message" id="send-message">
-            <b class="button-mensaje">Enviar Mensaje</b>
-        </div>
+        
     </main>
 
 </template>
@@ -27,32 +25,7 @@ main{
     color: var(--color-goldenrod);
     font-family: var(--font-gentium-basic);
 }
-.send-message {
-    position: absolute;
-    top: 850px;
-    left: 1090px;
-    margin-left: 3%;
-    border-radius: var(--br-11xl);
-    background-color: var(--color-maroon);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: var(--padding-lg) var(--padding-5xl);
-    gap: var(--gap-5xs);
-    color: var(--color-whitesmoke-100);
-    cursor: pointer;
-}
-.send-message:hover {
-  color: var(--color-darkgoldenrod);
-}
-.button-mensaje {
-    position: relative;
-    letter-spacing: 0.1em;
-    line-height: 26px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
+
 .titulo {
   position: absolute;
   top: 150px;

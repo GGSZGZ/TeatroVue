@@ -6,7 +6,7 @@ const telefono = ref('');
 const correo = ref('');
 const direccion = ref('');
 const usuario =JSON.parse(localStorage.getItem('user')!);
-
+const user=localStorage.getItem('user');
 
 if (usuario !== null) {
   nombre.value = usuario.username + ' ' + usuario.surname || '';
@@ -14,7 +14,21 @@ if (usuario !== null) {
   correo.value = usuario.email || '';
   direccion.value = usuario.direction || '';
 }
-
+function resetForm(){
+    if(user!=null){
+    if(nombre.value!='' && telefono.value!='' && correo.value!=''  && direccion.value!=''){
+        nombre.value = '';
+        telefono.value = '';
+        correo.value = '';
+        direccion.value = '';
+        alert('Gracias por contactar con nosotros!!')
+    }else{
+        alert('Falta algun campo por rellenarse');
+    }
+    }else{
+        alert('Debes hacer login primero para contactar con nosotros');
+    }
+}
 </script>
 <template>
     <main>
@@ -60,6 +74,9 @@ if (usuario !== null) {
                 </div>
             </div>
         </form>
+        <div class="send-message" id="send-message" @click="resetForm">
+            <b class="button-mensaje">Enviar Mensaje</b>
+        </div>
     </main>
 </template>
 
@@ -214,4 +231,30 @@ if (usuario !== null) {
         font-family: var(--font-gentium-basic);
         font-size: var(--font-size-xl);
     }
+    .send-message {
+    position: absolute;
+    top: 850px;
+    left: 1090px;
+    margin-left: 3%;
+    border-radius: var(--br-11xl);
+    background-color: var(--color-maroon);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-lg) var(--padding-5xl);
+    gap: var(--gap-5xs);
+    color: var(--color-whitesmoke-100);
+    cursor: pointer;
+}
+.send-message:hover {
+  color: var(--color-darkgoldenrod);
+}
+.button-mensaje {
+    position: relative;
+    letter-spacing: 0.1em;
+    line-height: 26px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 </style>
