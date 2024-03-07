@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import { ref} from 'vue';
-  import { useApiStore } from '../store/api';
 
 //import css
 import "../assets/main.css";
@@ -207,7 +205,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <hr class="header-line-hr">
     </slot>
     <slot name="iconregister"></slot>
-    <slot name="logosearch"></slot>
+    <div class="container">
+      <input type="text" placeholder="Search">
+      <img alt="" src="../assets/searchIcon.png" class="search"/>
+    </div>
 
 
 </template>
@@ -244,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     text-align: center;
     font-size: 28px;
     color: #5d5a88;
-    font-family: 'Playfair Display';
+    font-family: var(--font-playfair-display);
   }
 
 .header-line-hr {
@@ -274,8 +275,79 @@ document.addEventListener('DOMContentLoaded', () => {
   line-height: 18px;
   font-weight: 400;
   font-family: inherit;
-  display: none;
 }
- 
+.container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 13px;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  left: 90%;
+  box-shadow: 0 0 25px 2px rgba(0, 0, 0, 0.2);
+  transform: scale(0.7);
+  background-color: white;
+  z-index: 10;
+  
+}
+.container:focus-within {
+  background-color: var(--color-gray); /* Cambiar a negro cuando cualquier hijo tiene el foco */
+  
+}
 
+.search {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transition: all 1s;
+  z-index: 4;
+}
+
+input {
+  position: absolute;
+  margin: auto;
+  width: 50px;
+  height: 50px;
+  outline: none;
+  border: none;
+  background: var(--color-maroon);
+  border-radius: 30px;
+  transition: all 1s;
+  opacity: 0;
+  z-index: 5;
+  left: 20px; /* Ajustado a la izquierda */
+  padding-left: 20px;
+  color: var(--color-goldenrod);
+}
+
+input:focus {
+  width: 700px;
+  height: 60px;
+  opacity: 1;
+  cursor: text;
+  left: -650px; /* Movido hacia la izquierda */
+}
+
+input:focus ~ .search {
+  right: -250px; /* Movido hacia la izquierda */
+  z-index: 6;
+}
+
+input:focus ~ .search::before {
+  width: 25px;
+}
+
+input:focus ~ .search::after {
+  width: 25px;
+  border: none;
+  background: white;
+  border-radius: 0%;
+}
+input::placeholder{
+  color: var(--color-goldenrod);
+  opacity: 0.5;
+  font-weight: bolder;
+}
 </style>

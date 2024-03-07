@@ -62,26 +62,14 @@ function splitObras(obras: any[]){
     router.push({ name: 'card', params: { id: id.toString() } });
   };
   
-      if(localStorage.getItem('reloadIndicator')=='true'){
-          // window.location.reload();
-          
-          
-          navItems();
-        }
-        
-        function navItems(){
-        
           if (localStorage.getItem('admin')=='true') {
             adminH3.value!.style.display = 'block';
-            localStorage.setItem('reloadIndicator','false');
+            
           } else {
             adminH3.value!.style.display = 'none';
-            localStorage.setItem('reloadIndicator','false');
-      }
-        }
-
-
-
+           
+          }
+          console.log(JSON.parse(localStorage.getItem('user')));
 </script>
 <template>
 

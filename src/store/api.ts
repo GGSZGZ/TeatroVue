@@ -6,7 +6,7 @@ const pinia = createPinia();
 // Exportamos la tienda
 export const useApiStore = defineStore('teatro', {
   state: () => ({
-    loggedInUser: null,
+    loggedInUser: JSON.parse(localStorage.getItem('user')!),
     admin: false,
   }),
   actions: {
@@ -58,9 +58,8 @@ export const useApiStore = defineStore('teatro', {
         return null;
       }
     },
-
     setLoggedInUser(user: any){
-      this.loggedInUser = user;
+      localStorage.setItem('user', JSON.stringify(user));
     }
   },
 });
