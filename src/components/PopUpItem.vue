@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { defineProps, onMounted, onUpdated} from 'vue';
 let asientosCount=0;
+let ticketsComprados;
+let filaColumnaOcupadas: string[] ;
 function navigateToTickets(){
 if(asientosCount!=0){
   emits('navigateToTickets');
@@ -45,10 +47,17 @@ const applyPopupStyles = () => {
       }
     };
     onMounted(() => {
+      setTimeout(() => {
+      ticketsComprados=localStorage.getItem('ticketsOcupadosPopup')!;
+      if(ticketsComprados.length>=113){
+        const ticketsArray = JSON.parse(ticketsComprados);
+        filaColumnaOcupadas = ticketsArray.map(elemento => `${elemento.ticketRow},${elemento.ticketColumn}`);
+        
+      }
         applyPopupStyles();
-
         crearSalaDeCine(6,6);
-
+        
+      }, 0);
         
     });
     onUpdated(() => {
@@ -74,8 +83,11 @@ const applyPopupStyles = () => {
     let importe: number = 0;
         let cantidadAsientos: number;
         let asientosOcupados: number[] = [];
+        
         function crearSalaDeCine(filas: number, columnas: number): void {
-            limpiarSalaDeCine();
+          
+          limpiarSalaDeCine();
+          asientosOcupados=filaColumnaOcupadas;
             const salaCine = document.getElementById('sala-cine') as HTMLElement;
             const cantidad = document.getElementById('cantidad') as HTMLElement;
             const precio = document.getElementById('importe') as HTMLElement;
@@ -119,9 +131,16 @@ const applyPopupStyles = () => {
 
                         const indiceAsiento = (fila - 1) * columnas + columna;
 
-                        if (asientosOcupados.includes(indiceAsiento)) {
+                        asientosOcupados.forEach(element => {
+                          
+                          
+                          if(element.split(','[0])[0]==fila && element.split(','[0])[1]==columna){
+
                             asiento.classList.add('asiento-ocupado');
-                        }
+                            asiento.innerHTML='';
+                            asiento.classList.add('asiento');
+                          }
+                        });
                         
                         salaCine.appendChild(asiento);
                        
@@ -130,6 +149,7 @@ const applyPopupStyles = () => {
                           //ocultar text
                           var textSvg=asiento.querySelector('.asiento-text') as HTMLElement;
                           
+                          if(textSvg!=null){
                             textSvg.style.visibility = 'hidden';
                         
 
@@ -272,6 +292,7 @@ const applyPopupStyles = () => {
                             });
                             storeSelectedSeats(selectedSeatsArray);
                             }
+                          }
                         });
                     }
                 }
@@ -461,9 +482,10 @@ th {
   width: 100%;
   text-align: center;
 }
-.asiento-ocupado {
+#sala-cine .asiento-ocupado {
   cursor: not-allowed;
   background-image: url("../assets/asientoocupado.svg");
+  background-size: cover;
 }
 
 .asiento-text{

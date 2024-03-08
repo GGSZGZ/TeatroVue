@@ -17,10 +17,10 @@ const storedSeats =localStorage.getItem('selectedSeats')!;
 const selectedSeats = ref([] as number[][]);
 selectedSeats.value = JSON.parse(storedSeats);
 
-const importe=localStorage.getItem('importe')!;
+const importe=Number(localStorage.getItem('importe'))!;
 //put user and tickets
 const fechaTicket=localStorage.getItem('fechaTicket');
-let schedule;
+let schedule : any;
 
 if(horario=='9:30 AM'){
     schedule=fechaTicket!+"0"+horario;

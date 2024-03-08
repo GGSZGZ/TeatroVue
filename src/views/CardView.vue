@@ -23,6 +23,32 @@ onMounted(() => {
 const showPopup = ref(false);
 const togglePopUp = () => {
   showPopup.value = !showPopup.value;
+  setTimeout(() => {
+    let horarioSeleccionado = localStorage.getItem('horario');
+    let diaSeleccionado=localStorage.getItem('fechaTicket')!;
+    diaSeleccionado=diaSeleccionado?.replace('T','');
+    horarioSeleccionado=horarioSeleccionado?.replace(" AM", '')!;
+    horarioSeleccionado=horarioSeleccionado?.replace(" PM", '')!;
+    horarioSeleccionado=horarioSeleccionado.trim();
+
+    let ticketsSold = JSON.parse(localStorage.getItem('soldTicket')!);
+    let ticketsOcupadosPopup:string[]=[];
+    ticketsSold.forEach((element : any) => {
+      let hora=element.scheduleTicket.split('T',2)[1];
+      let dia=element.scheduleTicket.split('T',2)[0];
+      if(horarioSeleccionado==="9:30"){
+        horarioSeleccionado='0'+horarioSeleccionado+":00";
+      }else if(horarioSeleccionado==="16:00" || horarioSeleccionado==="18:30"){
+        horarioSeleccionado=horarioSeleccionado+":00";
+      }
+      if(hora===horarioSeleccionado  && dia===diaSeleccionado){
+        ticketsOcupadosPopup.push(element);
+      }
+    });
+    localStorage.setItem('ticketsOcupadosPopup',JSON.stringify(ticketsOcupadosPopup));
+    
+  }, 0);
+  
 };
 const navigateToTickets = () =>{
   route.push({ name: 'ticket', params: { id: obraId.value.toString() } });
@@ -34,7 +60,8 @@ const fetchPlay = async () => {
   try {
     play.value = await useApiStore(pinia).fetchPlay(Number(obraId.value));
     dataLoaded.value=true;
-    
+    localStorage.setItem('soldTicket', JSON.stringify(play.value.tickets));
+
   } catch (err) {
     console.error(err);
   }
