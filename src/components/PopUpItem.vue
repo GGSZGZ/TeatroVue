@@ -8,6 +8,9 @@ if(asientosCount!=0){
   alert('Debes al menos seleccionar una butaca');
 }
 }
+function storeSelectedSeats(seats: number[][]){
+  localStorage.setItem('selectedSeats', JSON.stringify(seats));
+}
 const props = defineProps({
   show: Boolean
 });
@@ -144,6 +147,7 @@ const applyPopupStyles = () => {
                                 });
                                
                                 let asientosSeleccionadosImage = document.querySelectorAll('.asiento-seleccionado');
+
                                 if(asientosSeleccionadosImage.length<=6){
                                 setTimeout(() => {
                                 this.innerHTML=`<?xml version="1.0" standalone="no"?>
@@ -246,6 +250,7 @@ const applyPopupStyles = () => {
                                 }
                                 localStorage.setItem('importe', importe.toString());
                                 localStorage.setItem('cantidadAsientos', asientosCount.toString());
+                                
                                 if(!this.classList.contains('asiento-seleccionado')){
                                   pathBlack = asiento.querySelectorAll('.yellow') as any;
                                   pathBlack.forEach((pathBlack : any) => {
@@ -258,6 +263,14 @@ const applyPopupStyles = () => {
                                 this.innerHTML=svgContent;
                               }, 1000);
                             }
+                            const selectedSeatsArray: number[][] = Array.from(asientosSeleccionadosImage).map((asiento: Element) => {
+                              
+                              const numeroAsiento = asiento.querySelector('svg text.asiento-text')?.textContent as string;
+                              const numeroFila = parseInt(numeroAsiento.charAt(0));
+                              const numeroColumna = parseInt(numeroAsiento.charAt(2));
+                              return  [numeroFila, numeroColumna];
+                            });
+                            storeSelectedSeats(selectedSeatsArray);
                             }
                         });
                     }

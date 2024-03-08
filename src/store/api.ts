@@ -58,6 +58,27 @@ export const useApiStore = defineStore('teatro', {
         return null;
       }
     },
+    async fetchPostTicket(ticket:any) {
+      try {
+        const response = await fetch('https://localhost:7121/ticket', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(ticket),
+        });
+    
+        if (!response.ok) {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+          return null;
+        }
+    
+        return await response.json();
+      } catch (error) {
+        console.error('Error al enviar los datos:', error);
+        return null;
+      }
+    },
     async fetchPutUser(idUser: number, notes: string) {
       try {
         const response = await fetch(`https://localhost:7121/user/${idUser}`, {
@@ -66,6 +87,35 @@ export const useApiStore = defineStore('teatro', {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ notes }),
+        });
+    
+        if (!response.ok) {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+          return null;
+        }
+    
+        const responseBody = await response.text();
+        if (!responseBody) {
+          return null;
+        }
+    
+        return JSON.parse(responseBody);
+      } catch (error) {
+        console.error('Error al enviar los datos:', error);
+        return null;
+      }
+    },
+    async fetchPutUserTickets(idUser: number,payment : string,direction : string) {
+      try {
+        const response = await fetch(`https://localhost:7121/user/${idUser}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            payment,
+            direction,
+          }),
         });
     
         if (!response.ok) {

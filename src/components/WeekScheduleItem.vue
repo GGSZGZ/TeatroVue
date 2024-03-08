@@ -1,50 +1,79 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-//calendario
-  onMounted(() =>{
+  onMounted(() => {
     mostrarCalendario();
   });
+
   function mostrarCalendario() {
-      var daysContainer = document.getElementById("daysContainer")!;
+    var daysContainer = document.getElementById("daysContainer")!;
 
-      const daysOfWeek = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
-      const today = new Date();
-      const day = today.getDay();
+    const daysOfWeek = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+    const today = new Date();
+    const currentDay = today.getDay();
 
-      for (let i = 1; i <= daysOfWeek.length; i++) {
-        const dayElement = document.createElement("div");
-        dayElement.textContent = daysOfWeek[i - 1];
-        dayElement.style.textAlign = "center";
-        dayElement.style.padding = "2px 5px";
-        dayElement.style.backgroundColor = "var(--neutral-colors-white)";
-        dayElement.style.fontSize = "var(--font-size-xl)";
-        dayElement.style.fontFamily = "var(--font-gentium-basic)";
-        dayElement.style.borderBottom = "1px solid var(--color-black)";
-        dayElement.style.borderLeft = "1px solid var(--color-black)";
-        dayElement.style.borderRight = "1px solid var(--color-black)";
+    const formattedCurrentDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}T`;
+    localStorage.setItem('fechaTicket', formattedCurrentDate);
+    
 
-        dayElement.addEventListener("mouseenter", function() {
-            dayElement.style.backgroundColor = "var(--color-goldenrod)";
-        });
+    let selectedDayElement: HTMLDivElement | null = null;
 
-        dayElement.addEventListener("mouseleave", function() {
-            if (i === day) {
-                dayElement.style.backgroundColor = "var(--color-darkgoldenrod)";
-            } else {
-                dayElement.style.backgroundColor = "var(--neutral-colors-white)";
-            }
-        });
+    for (let i = 1; i <= daysOfWeek.length; i++) {
+      const dayElement = document.createElement("div");
+      dayElement.textContent = daysOfWeek[i - 1];
+      dayElement.style.textAlign = "center";
+      dayElement.style.padding = "2px 5px";
+      dayElement.style.backgroundColor = "var(--neutral-colors-white)";
+      dayElement.style.fontSize = "var(--font-size-xl)";
+      dayElement.style.fontFamily = "var(--font-gentium-basic)";
+      dayElement.style.borderBottom = "1px solid var(--color-black)";
+      dayElement.style.borderLeft = "1px solid var(--color-black)";
+      dayElement.style.borderRight = "1px solid var(--color-black)";
 
-        if (i === day) {
+      dayElement.addEventListener("mouseenter", function () {
+       
+        if (dayElement !== selectedDayElement) {
+          dayElement.style.backgroundColor = "var(--color-goldenrod)";
+        }
+      });
+
+      dayElement.addEventListener("mouseleave", function () {
+        
+        if (dayElement !== selectedDayElement) {
+          dayElement.style.backgroundColor = "var(--neutral-colors-white)";
+        }
+      });
+
+      dayElement.addEventListener("click", function () {
+        const selectedDay = new Date();
+        selectedDay.setDate(today.getDate() + (i - currentDay));
+
+        if (selectedDay >= today) {
+          if (selectedDayElement) {
+            selectedDayElement.style.backgroundColor = "var(--neutral-colors-white)";
+          }
+
           dayElement.style.backgroundColor = "var(--color-darkgoldenrod)";
-        }
+          selectedDayElement = dayElement;
 
-        if (daysContainer) {
-          daysContainer.appendChild(dayElement);
+          const formattedDate = `${selectedDay.getFullYear()}-${(selectedDay.getMonth() + 1).toString().padStart(2, '0')}-${selectedDay.getDate().toString().padStart(2, '0')}T`;
+    
+          localStorage.setItem('fechaTicket',formattedDate);
         }
+      });
+
+      if (i === currentDay) {
+        dayElement.style.backgroundColor = "var(--color-darkgoldenrod)";
+        selectedDayElement = dayElement;
+      }
+
+      if (daysContainer) {
+        daysContainer.appendChild(dayElement);
       }
     }
+    
+  }
 </script>
+
 <template>
     <div class="calendar">
         <div class="header-calendar">
@@ -60,7 +89,7 @@ import { onMounted } from 'vue';
     top: 230px;
     left: 780px;
     width: 704px;
-    height: 350px;
+    height: 200px;
     object-fit: cover;
     font-size: var(--font-size-xl);
     font-family: var(--font-gentium-basic);
@@ -79,6 +108,8 @@ import { onMounted } from 'vue';
 .days-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    height: 100px;
+    line-height: 100px;
 }
 div{
     display: block;

@@ -1,18 +1,58 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useApiStore, pinia } from '../store/api';
+
   const router = useRouter();
-
-
-
-
 const nombre = ref('');
 const apellidos = ref('');
 const telefono = ref('');
 const correo = ref('');
-const direccion = ref('');
+const direction = ref('');
 const payment = ref('');
 const usuario =JSON.parse(localStorage.getItem('user')!);
+const horario=localStorage.getItem('horario')!;
+//asientos
+const storedSeats =localStorage.getItem('selectedSeats')!;
+const selectedSeats = ref([] as number[][]);
+selectedSeats.value = JSON.parse(storedSeats);
+
+const importe=localStorage.getItem('importe')!;
+//put user and tickets
+const fechaTicket=localStorage.getItem('fechaTicket');
+let schedule;
+
+if(horario=='9:30 AM'){
+    schedule=fechaTicket!+"0"+horario;
+}else{
+    schedule=fechaTicket!+horario;
+}
+
+const playId = Number(router.currentRoute.value.params.id);
+
+
+
+function fetchPutUserTickets(){
+    let formattedSchedule = schedule.replace('PM', '');
+    formattedSchedule = formattedSchedule.replace('AM', '');
+    formattedSchedule=formattedSchedule.trim();
+    
+    
+for(let i=0;i<importe/25;i++){
+    let [fila, columna] = selectedSeats.value[i];
+    const ticket = {
+    ticketRow: fila,
+    ticketColumn: columna,
+    price: 25,
+    scheduleTicket: formattedSchedule,
+    userId: usuario.id,
+    playId: playId
+    };
+    
+    useApiStore(pinia).fetchPostTicket(ticket);
+}
+  useApiStore(pinia).fetchPutUserTickets(usuario.id,payment.value,direction.value);
+}
 
 
 if (usuario !== null) {
@@ -20,7 +60,7 @@ if (usuario !== null) {
   apellidos.value= usuario.surname || '';
   telefono.value = usuario.tlf || '';
   correo.value = usuario.email || '';
-  direccion.value = usuario.direction || '';
+  direction.value = usuario.direction || '';
 }
 
 const goBack = () => {
@@ -30,11 +70,12 @@ const goBack = () => {
 const user=localStorage.getItem('user');
 
 const navigateToSucces = async() => {
-    if(nombre.value!='' && apellidos.value!='' && correo.value!='' && direccion.value!='' && telefono.value!='' && payment.value!=''){
-    if(user!=null){
-        console.log(payment);
+    if(nombre.value!='' && apellidos.value!='' && correo.value!='' && direction.value!='' && telefono.value!='' && payment.value!=''){
         
-    router.push({ name: 'success' });
+        
+    if(user!=JSON.stringify(null) && user !=null){
+    fetchPutUserTickets();
+    await router.push({ name: 'success' });
     }else{
         alert('Debes iniciar sesión primero')
     }
@@ -70,7 +111,7 @@ const navigateToSucces = async() => {
             <option value="debitCard">Tarjeta de Debito</option>
         
         
-          </select><input v-model="direccion" type="text" class="input8" placeholder="C/Maria Bendito, 25*" id="Calle">
+          </select><input v-model="direction" type="text" class="input8" placeholder="C/Maria Bendito, 25*" id="Calle">
         </div>
         
         <div class="compra-realizada1" id="compraRealizadaContainer">

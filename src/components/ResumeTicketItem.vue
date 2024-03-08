@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const horario=localStorage.getItem('horario');
-const importe=localStorage.getItem('importe')
+const importe=localStorage.getItem('importe');
 const cantAsientos=localStorage.getItem('cantidadAsientos')
 
 
