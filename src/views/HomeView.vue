@@ -109,45 +109,31 @@ function splitObras(obras: any[]){
 
 <style scoped>
 .grip-cards {
-  position: absolute;
-  top: 1200px;
-  width: 1220px;
-  height: 1036px;
+  position: relative;
+  top:170px;
   margin-left: 1.8%;
 }
 .grip-cards1 {
-  position: absolute;
+  position: relative;
   top: 140px;
   left: 0;
-  width: 1220px;
   height: 1036px;
   margin-left: 1.8%;
 }
 
 .grip {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+  top: 600px;
   width: 1220px;
   height: 1036px;
   margin-left: 9%;
-  top: 784px;
-  left: 110px;
   height: 2092px;
-  cursor: pointer;
   text-align: left;
   font-size: var(--font-size-xl);
   color: var(--color-maroon);
   font-family: var(--font-gentium-basic);
 }
-.grip{
-    left: 5px;
-    top:685px;
-    width: 400px;
-  }
-  .grip-cards, .grip-cards1{
-    width:400px;
-  }
+
 main{
   background-color: var(--color-maroon);
   width: 100%;

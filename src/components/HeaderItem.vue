@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+import { ref, onMounted } from 'vue';
+import { useApiStore, pinia } from '../store/api';
+import { useRouter } from 'vue-router';
 //import css
 import "../assets/main.css";
 
@@ -171,7 +173,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
       });
-      
+
+
+interface Play {
+  id: number;
+  title: string;
+  
+}
+
+const plays = ref<Play[]>([]);
+
+const fetchPlays = async () => {
+  try {
+    plays.value = await useApiStore(pinia).fetchPlays();
+  } catch (err) {
+    console.error(err);
+  }
+};
+fetchPlays();
+
+//Search Logic
+const searchTerm = ref('');
+
+const searchPlays = () => {
+  plays.value.forEach(play =>{
+    const li = document.querySelector(`.search-results li.play${play.id}`)! as HTMLElement;
+    if(play.title.toLowerCase().includes(searchTerm.value.toLowerCase())){
+      li.style.display = 'block';
+    }else{
+      li.style.display = 'none';
+    }
+  })
+  
+  
+};
+
+
+//Obras
+
+const router = useRouter();
+let navigateToObra = (id: number) => {
+      console.log("Navigating to obra with id:", id);
+      router.push({ name: 'card', params: { id: id.toString() } });
+    };
 </script>
 <template>
 <link
@@ -206,8 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
     </slot>
     <slot name="iconregister"></slot>
     <div class="container">
-      <input type="text" placeholder="Search">
+      <input type="text" placeholder="Search" v-model="searchTerm" @input="searchPlays">
       <img alt="" src="../assets/searchIcon.png" class="search"/>
+      <ul  class="search-results">
+        <li v-for="play in plays" :key="play.id" @click="navigateToObra(play.id)" :class="'play' + play.id"> {{ play.title }}</li>
+      </ul>
     </div>
 
 
@@ -277,6 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
   font-family: inherit;
   display: none;
 }
+/*Search*/
 .container {
   position: absolute;
   display: flex;
@@ -291,11 +339,11 @@ document.addEventListener('DOMContentLoaded', () => {
   transform: scale(0.7);
   background-color: white;
   z-index: 10;
+  cursor: pointer;
   
 }
 .container:focus-within {
   background-color: var(--color-gray); /* Cambiar a negro cuando cualquier hijo tiene el foco */
-  
 }
 
 .search {
@@ -321,6 +369,7 @@ input {
   left: 20px; /* Ajustado a la izquierda */
   padding-left: 20px;
   color: var(--color-goldenrod);
+  cursor: pointer;
 }
 
 input:focus {
@@ -351,4 +400,38 @@ input::placeholder{
   opacity: 0.5;
   font-weight: bolder;
 }
+.search-results {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display:none;
+}
+
+input:focus ~ .search-results{
+  display: block;
+  width: 800%;
+  left: -630px;
+}
+.search-results li{
+  line-height: 50px;
+  height: 50px;
+  font-family: var(--font-playfair-display);
+  color: var(--color-gray);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding-left: 10px;
+  position: relative; /* Asegura que el z-index funcione */
+  z-index: 1000; /* Elige un valor alto para colocarlo por delante */
+}
+.search-results li:hover{
+  background-color: var(--color-goldenrod);
+}
+
+
 </style>

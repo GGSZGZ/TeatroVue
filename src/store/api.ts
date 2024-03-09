@@ -19,7 +19,6 @@ export const useApiStore = defineStore('teatro', {
 
       }
     },
-
     async fetchPlay(idObra: number) {
       try {
         const response = await fetch(`https://localhost:7121/play/${idObra}`);
@@ -115,6 +114,52 @@ export const useApiStore = defineStore('teatro', {
           body: JSON.stringify({
             payment,
             direction,
+          }),
+        });
+    
+        if (!response.ok) {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+          return null;
+        }
+    
+        const responseBody = await response.text();
+        if (!responseBody) {
+          return null;
+        }
+    
+        return JSON.parse(responseBody);
+      } catch (error) {
+        console.error('Error al enviar los datos:', error);
+        return null;
+      }
+    },
+    async fetchDeletePlay(idObra: number) {
+      try {
+        const response = await fetch(`https://localhost:7121/play/${idObra}`, {
+          method: 'DELETE'
+        });
+        if (!response.ok) {
+          throw new Error('Error al eliminar la obra');
+        }
+        return await response.json();
+      } catch (error) {
+        console.error(error);
+        throw new Error('Error al obtener los datos');
+      }
+    },
+    async fetchPutPlay(idObra: number, title: string, description : string, synopsis : string, director: string, genre: string) {
+      try {
+        const response = await fetch(`https://localhost:7121/play/${idObra}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: title,
+            descriptionPlay: description,
+            synopsis: synopsis,
+            director: director,
+            genre: genre
           }),
         });
     

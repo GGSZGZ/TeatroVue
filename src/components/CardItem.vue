@@ -80,6 +80,7 @@ import "../assets/main.css";
 }
 .card2:hover, .card1:hover,.card:hover,.card3:hover,.card4:hover,.card5:hover {
   transform: scale(1.1);
+  cursor: pointer;
 }
 .card3 {
   position: absolute;
