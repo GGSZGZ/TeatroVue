@@ -148,12 +148,6 @@ function modificarObra(idObra: number) {
       const newGenre = inputGenre.value;
       genreTd.innerHTML = newGenre;
 
-      console.log("Id: "+idObra);
-      console.log("Title: "+newTitle);
-      console.log("Desc: "+newDesc);
-      console.log("Synop: "+newSynopsis);
-      console.log("Director: "+newDirector);
-      console.log("Genre: "+newGenre);
       // Aquí puedes llamar a una función para guardar los cambios, si es necesario
       fetchPutPlay(idObra, newTitle, newDesc, newSynopsis, newDirector, newGenre);
 
