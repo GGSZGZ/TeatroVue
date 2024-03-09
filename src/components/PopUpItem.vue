@@ -130,10 +130,9 @@ const applyPopupStyles = () => {
 
 
                         const indiceAsiento = (fila - 1) * columnas + columna;
-
+                        
+                        if(asientosOcupados!=undefined){               
                         asientosOcupados.forEach(element => {
-                          
-                          
                           if(element.split(','[0])[0]==fila && element.split(','[0])[1]==columna){
 
                             asiento.classList.add('asiento-ocupado');
@@ -141,7 +140,7 @@ const applyPopupStyles = () => {
                             asiento.classList.add('asiento');
                           }
                         });
-                        
+                      }
                         salaCine.appendChild(asiento);
                        
                         
