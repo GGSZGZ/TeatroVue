@@ -1,28 +1,41 @@
 <script setup lang="ts">
-import { ref, defineProps, computed } from 'vue';
-const props = defineProps(['obras']);
+import { ref} from 'vue';
 import TableItem from '@/components/TableItem.vue';
+import { useApiStore, pinia } from '../store/api';
 
-// onMounted(() => {
-//       modificar, eliminar y añadir obras
-      
-//     });
+const obras:any=ref([]);
+const nuevaObra=ref({
+      title : '',
+      descriptionPlay: '',
+      synopsis: '',
+      director: '',
+      genre: ''
+     });
+
     function anyadirObra() {
-       
-       console.log(`Añadir obra con ID`);
+      const {title,descriptionPlay,synopsis,director,genre}=nuevaObra.value;
+      
+      
+      if(!title || !descriptionPlay || !synopsis || !director || !genre){
+        alert('Faltan campos por completar')
+      }else{
+        obras.value.push({
+          title,
+          descriptionPlay,
+          synopsis,
+          director,
+          genre
+        });
+        useApiStore(pinia).fetchPostPlays(JSON.stringify(obras.value[0]));
+      }
+     
+      
      }
-     const valid = ref('');
+     
      //TextField Título
      const nameRules = ref([
-      (value:string) => !!value || 'El campo no puede estar vacío', // Debe tener al menos un carácter
+      (value:string) => !!value || 'El campo no puede estar vacío',
     ]);
-    const imageUrl=ref('');
-
-    const isValidImageUrl = computed(() => {
-      // Expresión regular para validar URL de imagen
-      const imageUrlRegex = /(https?:\/\/.*\.(?:png|jpg|jpeg|gif))/i;
-      return imageUrlRegex.test(imageUrl.value);
-    });
   
 
 </script>
@@ -35,6 +48,7 @@ import TableItem from '@/components/TableItem.vue';
             md="2"
           >
           <v-text-field clearable
+                v-model="nuevaObra.title"
                 :rules="nameRules"
                 label="Title"
                 placeholder="Y llegó la noche"
@@ -47,6 +61,7 @@ import TableItem from '@/components/TableItem.vue';
             md="4"
           >
           <v-textarea clearable
+                v-model="nuevaObra.descriptionPlay"
                 :rules="nameRules"
                 label="Description"
                 placeholder="Una obra apasionante llena de altibajos y de sentimiento florecidos"
@@ -61,8 +76,9 @@ import TableItem from '@/components/TableItem.vue';
             md="4"
           >
           <v-textarea clearable
+          v-model="nuevaObra.synopsis"
+                :rules="nameRules"
                 label="Sinopsis"
-                hide-details
                 placeholder="En el bullicioso mundo teatral del siglo XIX, un enmascarado misterioso acecha entre bambalinas, desentrañando secretos..."
                 required
                 rows="1"
@@ -74,15 +90,38 @@ import TableItem from '@/components/TableItem.vue';
             cols="14"
             md="2"
           >
-            <v-text-field v-model="imageUrl" label="Image URL"></v-text-field>
-            <v-img v-if="isValidImageUrl" :src="imageUrl" width="200" height="200"></v-img>
+
+          <v-textarea clearable
+          v-model="nuevaObra.director"
+                :rules="nameRules"
+                label="Director"
+                placeholder="Juanjo Pastor es un joven actor"
+                required
+                rows="1"
+                auto-grow
+              ></v-textarea>
           </v-col>
 
           <v-col
             cols="14"
             md="2"
           >
-            <button @click="anyadirObra()">Añadir Obra</button>
+          <v-text-field clearable
+          v-model="nuevaObra.genre"
+                :rules="nameRules"
+                label="Género"
+                placeholder="Comedia"
+                required
+              ></v-text-field>
+          </v-col>
+
+          <v-col
+            cols="14"
+            md="2"
+          >
+
+          
+            <button @click="anyadirObra">Añadir Obra</button>
           </v-col>
         </v-row>
       </v-container>
@@ -91,6 +130,10 @@ import TableItem from '@/components/TableItem.vue';
     <TableItem :obras="obras"/>
 </template>
 <style scoped>
+
+    
+
+
     button{
         width: 100%; 
         padding: 10px; 
@@ -112,6 +155,7 @@ import TableItem from '@/components/TableItem.vue';
     }
     .v-container{
       display: flex;
+      margin-left: 40px;
     }
     .v-row{
       flex-wrap: nowrap;

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, defineEmits, defineProps } from 'vue';
+import { ref } from 'vue';
 import { useApiStore, pinia } from '../store/api';
-const props = defineProps(['obras']);
+// const props = defineProps(['obras']);
 let obras = ref(Array());
 
 const fetchPlays = async () => {
@@ -21,8 +21,6 @@ const fetchDeletePlay = async (id: number) => {
 };
 const fetchPutPlay = async (id: number, title : string,description : string, synopsis : string, director: string, genre: string) => {
   try {
-    console.log("Alo");
-    
     await useApiStore(pinia).fetchPutPlay(id, title, description, synopsis, director, genre);
   } catch (err) {
     console.error(err);

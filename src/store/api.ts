@@ -179,6 +179,27 @@ export const useApiStore = defineStore('teatro', {
         return null;
       }
     },
+    async fetchPostPlays(play:any) {
+      try {
+        const response = await fetch('https://localhost:7121/play', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: play,
+        });
+    
+        if (!response.ok) {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+          return null;
+        }
+    
+        return await response.json();
+      } catch (error) {
+        console.error('Error al enviar los datos:', error);
+        return null;
+      }
+    },
     setLoggedInUser(user: any){
       localStorage.setItem('user', JSON.stringify(user));
     }
