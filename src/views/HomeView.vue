@@ -26,7 +26,7 @@ const fetchPlays = async () => {
 fetchPlays();
   function addClassIdd(obras: any[]){
    // Ruta al archivo JSON
-    const filePath: string = "./src/assets/classImg.json";
+    const filePath: string = "/src/assets/classImg.json";
     // Utiliza la API fetch para cargar el archivo JSON
     fetch(filePath)
       .then(response => {
