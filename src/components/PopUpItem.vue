@@ -51,7 +51,7 @@ const applyPopupStyles = () => {
       ticketsComprados=localStorage.getItem('ticketsOcupadosPopup')!;
       if(ticketsComprados.length>=113){
         const ticketsArray = JSON.parse(ticketsComprados);
-        filaColumnaOcupadas = ticketsArray.map(elemento => `${elemento.ticketRow},${elemento.ticketColumn}`);
+        filaColumnaOcupadas = ticketsArray.map((elemento:any) => `${elemento.ticketRow},${elemento.ticketColumn}`);
         
       }
         applyPopupStyles();
@@ -64,34 +64,42 @@ const applyPopupStyles = () => {
         applyPopupStyles();
     })
 
-    function limpiarSalaDeCine() {
+    function limpiarSalaDeCine(filas: number, columnas: number) {
       const salaCine = document.getElementById('sala-cine')!;
       const cantidad = document.getElementById('cantidad') as HTMLElement;
       const precio = document.getElementById('importe') as HTMLElement;
+      const disponibles = document.getElementById('disponibles') as HTMLElement;
       
       salaCine.innerHTML = ''; // Elimina todos los elementos dentro del contenedor de la sala de cine
       importe = 0; // Reinicia el importe
       cantidadAsientos = 0; // Reinicia la cantidad de asientos
       cantidad.textContent = "ENTRADAS SELECCIONADAS: "+ cantidadAsientos;
       precio.textContent = "IMPORTE TOTAL: "+importe+"€";
+      cantidadDisponible = (filas*columnas)-asientosOcupados.length;
       asientosOcupados = []; // Reinicia la lista de asientos ocupados
+      
+      disponibles.textContent = "ENTRADAS DISPONIBLES: "+ cantidadDisponible;
       const tbody = document.getElementById('asientosSeleccionados')!;
       tbody.innerHTML = '';
   }
 
     // Función para crear la sala de cine
-    let importe: number = 0;
+        let importe: number = 0;
         let cantidadAsientos: number;
+        let cantidadDisponible: number;
+        let indiceAsiento = 0;
         let asientosOcupados: number[] = [];
         
         function crearSalaDeCine(filas: number, columnas: number): void {
           
-          limpiarSalaDeCine();
+          limpiarSalaDeCine(filas, columnas);
           asientosOcupados=filaColumnaOcupadas;
             const salaCine = document.getElementById('sala-cine') as HTMLElement;
             const cantidad = document.getElementById('cantidad') as HTMLElement;
             const precio = document.getElementById('importe') as HTMLElement;
+            const disponibles = document.getElementById('disponibles') as HTMLElement;
             
+
             const asientosSeleccionadosArray: number[] = [];
             
                 for (let fila = 1; fila <= filas; fila++) {
@@ -129,19 +137,21 @@ const applyPopupStyles = () => {
                         asiento.innerHTML = svgContent;
 
 
-                        const indiceAsiento = (fila - 1) * columnas + columna;
+                        
                         
                         if(asientosOcupados!=undefined){               
                         asientosOcupados.forEach(element => {
                           if(element.split(','[0])[0]==fila && element.split(','[0])[1]==columna){
-
+                            indiceAsiento+=1;
                             asiento.classList.add('asiento-ocupado');
                             asiento.innerHTML='';
                             asiento.classList.add('asiento');
                           }
+
                         });
                       }
                         salaCine.appendChild(asiento);
+                        disponibles.textContent = "ENTRADAS DISPONIBLES: "+(cantidadDisponible-indiceAsiento);
                        
                         
                         asiento.addEventListener('click', function () {
@@ -154,6 +164,7 @@ const applyPopupStyles = () => {
 
 
                             if (!this.classList.contains('asiento-ocupado')) {
+                              
                                 this.classList.toggle('asiento-seleccionado');
                                 //animacion
                                 var pathBlack = asiento.querySelectorAll('.yellow') as any;
@@ -304,7 +315,7 @@ const applyPopupStyles = () => {
         <div class="desktop-popup">
         <section class="group-section">
           <div class="rectangle-div"></div>
-
+          <div class="pantalla">Escenario</div>
           <div class="sala-cine" id="sala-cine"></div>
           <div class="butaca-fila-n32-container">
       
@@ -323,6 +334,7 @@ const applyPopupStyles = () => {
           <div class="entradas-seleccionadas0-impor-container">
             <p class="n32" id="cantidad">Entradas seleccionadas: 0</p>
             <p class="n32" id="importe">Importe total: 0,00€</p>
+            <p class="n32" id="disponibles">Entradas Disponibles: 36</p>
           </div>
         </section>
         <div class="master-primary-button9" id="popupmasterPrimaryButton">
@@ -369,16 +381,27 @@ const applyPopupStyles = () => {
   height: 579px;
   border-radius: var(--br-24xl);
 }
+.pantalla{
+  position: relative;
+  top: 40px;
+  left: 100px;
+  width: 400px;
+  height: 50px;
+  color: var(--color-gray);
+  background-color: var(--color-whitesmoke-100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .sala-cine {
-  position: absolute;
+  position:relative;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-  top: 40px;
+  top: 70px;
   left: 42.3px;
   border-radius: var(--br-31xl);
   width: 578px;
-  height: 533.5px;
+  height: 450.5px;
   object-fit: cover;
 }
 .butaca-fila-n32-container {

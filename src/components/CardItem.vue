@@ -7,6 +7,7 @@ import "../assets/main.css";
         title?:string
         descripcion?:string
         sinopsis?:string
+        genero?:string
         asientos?:string[]
     }>()
 </script>
@@ -15,8 +16,8 @@ import "../assets/main.css";
         
             <div class="card" :id="'card-' + idObra">
                 <h3 class="card-heading" :id="'title-'+idObra">{{title}}</h3>
-                <div class="paragraph" :id="'description-'+idObra">{{descripcion}}
-                </div>
+                <div class="paragraph" :id="'description-'+idObra">{{descripcion}}</div>
+                <div class="genre">Género: {{ genero }}</div>
                 <div class="link">
                   <div class="master-link">
                     <b class="learn-more">Más</b>
@@ -71,6 +72,15 @@ import "../assets/main.css";
   line-height: 30px;
   color: var(--color-gray);
   width: 340.6px;
+}
+.genre{
+  position: relative;
+  top: 400px;
+  display: inline-block;
+  line-height: 30px;
+  color: var(--color-gray);
+  width: 340.6px;
+  font-weight: bold;
 }
 .link {
   display: flex;

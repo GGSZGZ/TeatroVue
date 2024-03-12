@@ -85,6 +85,7 @@ function splitObras(obras: any[]){
         :classImg="obra.classImg"
         :title="obra.title"
         :descripcion="obra.descriptionPlay"
+        :genero="obra.genre"
         :sinopsis="obra.synopsis"
         :asientos="obra.asientos"
         @click="navigateToObra(obra.id)">
