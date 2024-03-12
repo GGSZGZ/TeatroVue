@@ -172,7 +172,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 drawStop();
             }
         }
+
+        const container = document.querySelector('.container') as HTMLElement;
+        const input = document.querySelector('.input-search') as HTMLElement;
+        const searchRes = document.querySelector('.search-results') as HTMLElement;
+        container?.addEventListener('click', ()=> {
+          //Container
+          container.style.background = 'var(--color-gray)';
+          //Input
+          input.style.width = '700px';
+          input.style.height = '60px';
+          input.style.opacity = '1';
+          input.style.left = '-650px';
+          input.style.cursor = 'text';
+          //UL
+          searchRes.style.display = 'block';
+          searchRes.style.width = '800%';
+          searchRes.style.left = '-650px';
+        })
       });
+
+      document.addEventListener('click', (event) => {
+        const container = document.querySelector('.container') as HTMLElement;
+        const input = document.querySelector('.input-search') as HTMLElement;
+        const searchRes = document.querySelector('.search-results') as HTMLElement;
+
+        if (!container.contains(event.target as Node)) {
+          // Si el clic ocurrió fuera del contenedor
+          container.style.background = ''; // Restaurar el fondo
+          input.style.width = '';
+          input.style.height = '';
+          input.style.opacity = '';
+          input.style.left = '';
+          input.style.cursor = '';
+          searchRes.style.display = ''; // Ocultar los resultados
+          searchRes.style.width = '';
+          searchRes.style.left = '';
+        }
+    });
 
 
 interface Play {
@@ -210,11 +247,13 @@ const searchPlays = () => {
 
 
 //Obras
-
-const router = useRouter();
+let router = useRouter();
 let navigateToObra = (id: number) => {
-      console.log("Navigating to obra with id:", id);
-      router.push({ name: 'card', params: { id: id.toString() } });
+      router.replace({ name: 'card', params: { id: id.toString() } });
+      setTimeout(() => {
+        window.location.reload();
+      }, 0);
+      
     };
 </script>
 <template>
@@ -250,7 +289,7 @@ let navigateToObra = (id: number) => {
     </slot>
     <slot name="iconregister"></slot>
     <div class="container">
-      <input type="text" placeholder="Search" v-model="searchTerm" @input="searchPlays">
+      <input class="input-search" type="text" placeholder="Search" v-model="searchTerm" @input="searchPlays">
       <img alt="" src="../assets/searchIcon.png" class="search"/>
       <ul  class="search-results">
         <li v-for="play in plays" :key="play.id" @click="navigateToObra(play.id)" :class="'play' + play.id"> {{ play.title }}</li>
@@ -342,9 +381,7 @@ let navigateToObra = (id: number) => {
   cursor: pointer;
   
 }
-.container:focus-within {
-  background-color: var(--color-gray); /* Cambiar a negro cuando cualquier hijo tiene el foco */
-}
+
 
 .search {
   position: absolute;
@@ -372,29 +409,6 @@ input {
   cursor: pointer;
 }
 
-input:focus {
-  width: 700px;
-  height: 60px;
-  opacity: 1;
-  cursor: text;
-  left: -650px; /* Movido hacia la izquierda */
-}
-
-input:focus ~ .search {
-  right: -250px; /* Movido hacia la izquierda */
-  z-index: 6;
-}
-
-input:focus ~ .search::before {
-  width: 25px;
-}
-
-input:focus ~ .search::after {
-  width: 25px;
-  border: none;
-  background: white;
-  border-radius: 0%;
-}
 input::placeholder{
   color: var(--color-goldenrod);
   opacity: 0.5;
@@ -413,11 +427,6 @@ input::placeholder{
   display:none;
 }
 
-input:focus ~ .search-results{
-  display: block;
-  width: 800%;
-  left: -630px;
-}
 .search-results li{
   line-height: 50px;
   height: 50px;
