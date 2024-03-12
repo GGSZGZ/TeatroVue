@@ -89,7 +89,7 @@ const navigateToSucces = async() => {
 <template>
 <div class="title-form">Rellene los siguientes datos:</div>
       <!-- formulario, rehacer -->
-      <form class="form" id="form" action="http://localhost:3000/tickets" method="POST">
+      <form class="form" id="form" action="http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/tickets" method="POST">
         <div class="form-box">
             <div class="marco-form"></div>
             <div class="background-form"></div>
