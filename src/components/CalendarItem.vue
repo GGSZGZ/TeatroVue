@@ -27,7 +27,7 @@ let actual = new Date();
       }
 
       if (i < primerDiaSemana || i >= last_cell) {
-        resultado += "<td>&nbsp;</td>";
+        resultado += "<td></td>";
       } else {
         
        
@@ -67,8 +67,8 @@ let actual = new Date();
 </template>
 <style scoped>
 #calendar {
-  position: absolute;
-  top: 2992px;
+  position: relative;
+  top: 800px;
   width: 1226px;
   height: 794px;
   margin-left: 10%;
@@ -97,5 +97,7 @@ tbody {
     display: table-row-group;
     vertical-align: middle;
     border-color: inherit;
+    color: var(--color-gray);
 }
+
 </style>

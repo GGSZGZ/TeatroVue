@@ -3,6 +3,14 @@ import { ref} from 'vue';
 import TableItem from '@/components/TableItem.vue';
 import { useApiStore, pinia } from '../store/api';
 
+const fetchPostPlays = async (obra: any) => {
+  try {
+    await useApiStore(pinia).fetchPostPlays(obra);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const obras:any=ref([]);
 const nuevaObra=ref({
       title : '',
@@ -26,7 +34,7 @@ const nuevaObra=ref({
           director,
           genre
         });
-        useApiStore(pinia).fetchPostPlays(JSON.stringify(obras.value[0]));
+        fetchPostPlays(JSON.stringify(obras.value[0]));
       }
      
       
@@ -121,7 +129,7 @@ const nuevaObra=ref({
           >
 
           
-            <button @click="anyadirObra">Añadir Obra</button>
+            <button @click.prevent="anyadirObra">Añadir Obra</button>
           </v-col>
         </v-row>
       </v-container>
@@ -130,9 +138,6 @@ const nuevaObra=ref({
     <TableItem :obras="obras"/>
 </template>
 <style scoped>
-
-    
-
 
     button{
         width: 100%; 
