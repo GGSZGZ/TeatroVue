@@ -12,7 +12,7 @@ export const useApiStore = defineStore('teatro', {
   actions: {
     async fetchPlays() {
       try {
-        const response = await fetch("https://localhost:7121/play");
+        const response = await fetch("http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/play");
         return await response.json();
       } catch (error) {
         console.log("Error al obtener los datos");
@@ -21,7 +21,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPlay(idObra: number) {
       try {
-        const response = await fetch(`https://localhost:7121/play/${idObra}`);
+        const response = await fetch(`http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/play/${idObra}`);
         return await response.json();
       } catch (error) {
         console.log("Error al obtener los datos");
@@ -29,7 +29,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchUsers() {
       try {
-        const response = await fetch("https://localhost:7121/user");
+        const response = await fetch("http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/user");
         return await response.json();
       } catch (error) {
         console.log("Error al obtener los datos");
@@ -38,7 +38,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPostUser(user:any) {
       try {
-        const response = await fetch('https://localhost:7121/user', {
+        const response = await fetch('http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/user', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPostTicket(ticket:any) {
       try {
-        const response = await fetch('https://localhost:7121/ticket', {
+        const response = await fetch('http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/ticket', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPutUser(idUser: number, notes: string) {
       try {
-        const response = await fetch(`https://localhost:7121/user/${idUser}`, {
+        const response = await fetch(`http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/user/${idUser}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPutUserTickets(idUser: number,payment : string,direction : string) {
       try {
-        const response = await fetch(`https://localhost:7121/user/${idUser}`, {
+        const response = await fetch(`http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/user/${idUser}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -135,7 +135,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchDeletePlay(idObra: number) {
       try {
-        const response = await fetch(`https://localhost:7121/play/${idObra}`, {
+        const response = await fetch(`http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/play/${idObra}`, {
           method: 'DELETE'
         });
         if (!response.ok) {
@@ -149,7 +149,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPutPlay(idObra: number, title: string, description : string, synopsis : string, director: string, genre: string) {
       try {
-        const response = await fetch(`https://localhost:7121/play/${idObra}`, {
+        const response = await fetch(`http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/play/${idObra}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -181,7 +181,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPostPlays(play:any) {
       try {
-        const response = await fetch('https://localhost:7121/play', {
+        const response = await fetch('http://a8f4375d87bcb40289a36c70a7186d2d-1138029668.us-east-1.elb.amazonaws.com/play', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

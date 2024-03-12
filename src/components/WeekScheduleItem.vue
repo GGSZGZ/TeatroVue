@@ -9,7 +9,7 @@ import { onMounted } from 'vue';
 
     const daysOfWeek = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
     const today = new Date();
-    const currentDay = today.getDay();
+    const currentDay = today.getDay() === 0 ? 6 : today.getDay();
 
     const formattedCurrentDate = `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${today.getDate().toString().padStart(2, '0')}T`;
     localStorage.setItem('fechaTicket', formattedCurrentDate);
