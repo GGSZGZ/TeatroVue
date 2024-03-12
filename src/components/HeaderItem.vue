@@ -208,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
           searchRes.style.display = ''; // Ocultar los resultados
           searchRes.style.width = '';
           searchRes.style.left = '';
+          
         }
     });
 
