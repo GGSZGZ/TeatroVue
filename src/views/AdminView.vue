@@ -66,7 +66,7 @@ const nuevaObra=ref({
 
           <v-col
             cols="14"
-            md="4"
+            md="3"
           >
           <v-textarea clearable
                 v-model="nuevaObra.descriptionPlay"
@@ -81,7 +81,7 @@ const nuevaObra=ref({
 
           <v-col
             cols="14"
-            md="4"
+            md="3"
           >
           <v-textarea clearable
           v-model="nuevaObra.synopsis"
@@ -96,7 +96,7 @@ const nuevaObra=ref({
 
           <v-col
             cols="14"
-            md="2"
+            md="3"
           >
 
           <v-textarea clearable

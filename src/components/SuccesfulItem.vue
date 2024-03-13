@@ -22,10 +22,10 @@ onMounted(() => {
         <b class="button" id="okBtn" >OK</b>
         </RouterLink>
       </div>
-      <div class="descargar-button">
+      <!-- <div class="descargar-button">
         <b class="button">Descargar</b>
         <img class="descargar-icon" alt="" src="../assets/downloadIcon.png">
-      </div>
+      </div> -->
 </div>
 </template>
 
@@ -62,7 +62,7 @@ onMounted(() => {
 }
 .ok-button {
     position: absolute;
-    top: 62%;
+    top: 56%;
     left: 48%;
     border-radius: var(--br-11xl);
     background-color: var(--color-maroon);
