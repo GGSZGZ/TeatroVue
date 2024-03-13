@@ -9,7 +9,11 @@
   const router = useRouter();
   const navigateToHome = async() => {
     if(existingUser.value==true){
-        router.push({ name: 'home' });
+      localStorage.setItem('headerItemsloaded','true');
+      router.push({ name: 'home' });
+      setTimeout(()=>{
+        window.location.reload();
+      },0)
     }
   };
 
@@ -91,6 +95,9 @@
       localStorage.setItem('user', JSON.stringify(null));
       localStorage.setItem('admin', "false");
       alert('Se ha cerrado sesión');
+      setTimeout(()=>{
+        window.location.reload();
+      },0)
     }else{
       alert('Todavía no se ha logueado');
     }
