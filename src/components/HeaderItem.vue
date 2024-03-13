@@ -246,6 +246,26 @@ const searchPlays = () => {
   
 };
 
+onMounted(() =>{
+  const adminH3 = ref<HTMLElement | null>(null);
+    adminH3.value = document.querySelector('.sections .admin')! as HTMLElement;
+const profileH3 = ref<HTMLElement | null>(null);
+    profileH3.value = document.querySelector('.sections .profile')! as HTMLElement;
+
+
+if (localStorage.getItem('admin')=='true') {
+      adminH3.value!.style.display = 'block';
+    } else {
+      adminH3.value!.style.display = 'none';
+    }
+
+    if(localStorage.getItem('user')!==JSON.stringify(null)){
+      profileH3.value!.style.display = 'block';
+    }else{
+      profileH3.value!.style.display = 'none';
+    }
+
+});
 
 //Obras
 let router = useRouter();
@@ -279,11 +299,14 @@ let navigateToObra = (id: number) => {
         </h3>
         
         <h3 class="about">
-        <slot name="about"></slot>
+          <slot name="about"></slot>
         </h3>
         <h3 class="about">
-        <slot name="contact"></slot>
-    </h3>
+          <slot name="contact"></slot>
+        </h3>
+        <h3 class="profile">
+          <slot name="profile"></slot>
+        </h3>
   </nav>
     <slot name="hrindex">
         <hr class="header-line-hr">
@@ -357,6 +380,14 @@ let navigateToObra = (id: number) => {
   cursor: pointer;
 }
 .admin{
+  margin: 0;
+  position: relative;
+  line-height: 18px;
+  font-weight: 400;
+  font-family: inherit;
+  display: none;
+}
+.profile{
   margin: 0;
   position: relative;
   line-height: 18px;

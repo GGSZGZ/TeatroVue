@@ -18,10 +18,6 @@
       if((element.email === values.emailTlf || element.tlf==values.emailTlf) && element.passwd === values.passwd){
         existingUser.value=true;
         localStorage.setItem('user', JSON.stringify(element));
-        // useApiStore().setLoggedInUser();
-        // console.log(useApiStore().loggedInUser);
-        // console.log(JSON.parse(localStorage.getItem('user')!));
-        
         if(element.email.indexOf('@svalero') !==-1){
           localStorage.setItem('admin', "true");
         }else{

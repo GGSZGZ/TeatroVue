@@ -10,8 +10,6 @@ import { useApiStore, pinia } from '../store/api';
 
 const dataLoaded = ref(false);
 const plays:any = ref([]);
-const adminH3 = ref<HTMLElement | null>(null);
-      adminH3.value = document.querySelector('.sections .admin')! as HTMLElement;
 
 
 const fetchPlays = async () => {
@@ -25,52 +23,17 @@ const fetchPlays = async () => {
   }
 };
 fetchPlays();
-  function addClassIdd(obras: any[]){
-   // Ruta al archivo JSON
-    const filePath: string = "/src/assets/classImg.json";
-    // Utiliza la API fetch para cargar el archivo JSON
-    fetch(filePath)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Error al cargar el archivo ${filePath}: ${response.statusText}");
-        }
-        return response.json();
-      })
-      .then(obrasClassImg => {
-        obras.forEach((obra, index) => {
-                if (obra) {
-                    // Crea las propiedades 'classImg' e 'idObra' si no existen
-                    obra.class = obrasClassImg[index].class;
-                    obra.classImg = obrasClassImg[index].classImg;
-                }
-                
-              });
-              splitObras(obras);
-            })
-}
-let obras1: any[];
-let obras2: any[];
-
-function splitObras(obras: any[]){
-   obras1=obras.filter(obra => [7, 10, 11, 12, 8, 9].includes(obra.id));
-   obras2=obras.filter(obra => ![7, 10, 11, 12, 8, 9].includes(obra.id));
-   dataLoaded.value=true;
-   
-}
+  
   //Obras
   const router = useRouter();
   const navigateToObra = (id: number) => {
     router.push({ name: 'card', params: { id: id.toString() } });
   };
   
-          if (localStorage.getItem('admin')=='true') {
-            adminH3.value!.style.display = 'block';
-            
-          } else {
-            adminH3.value!.style.display = 'none';
-           
-          }
-          // console.log(JSON.parse(localStorage.getItem('user')));
+    
+   
+     
+          
 </script>
 <template>
 

@@ -36,6 +36,14 @@ export const useApiStore = defineStore('teatro', {
 
       }
     },
+    async fetchUser(idUser: number) {
+      try {
+        const response = await fetch(`http://ivanggsapi.retocsv.es/user/${idUser}`);
+        return await response.json();
+      } catch (error) {
+        console.log("Error al obtener los datos");
+      }
+    },
     async fetchPostUser(user:any) {
       try {
         const response = await fetch('http://ivanggsapi.retocsv.es/user', {
@@ -73,6 +81,39 @@ export const useApiStore = defineStore('teatro', {
         }
     
         return await response.json();
+      } catch (error) {
+        console.error('Error al enviar los datos:', error);
+        return null;
+      }
+    },
+    async fetchPutUserAll(idUser: number, user: any) {
+      try {
+        const response = await fetch(`http://ivanggsapi.retocsv.es/user/${idUser}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: user.username,
+            surname: user.surname,
+            passwd: user.passwd,
+            direction: user.direction,
+            email: user.email,
+            tlf: user.tlf
+          })
+        });
+
+        if (!response.ok) {
+          console.error(`Error: ${response.status} - ${response.statusText}`);
+          return null;
+        }
+    
+        const responseBody = await response.text();
+        if (!responseBody) {
+          return null;
+        }
+    
+        return JSON.parse(responseBody);
       } catch (error) {
         console.error('Error al enviar los datos:', error);
         return null;

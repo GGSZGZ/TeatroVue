@@ -7,6 +7,7 @@ import TicketsView from "../views/TicketView.vue";
 import SuccesView from "../views/SuccesView.vue";
 import AdminView from "../views/AdminView.vue";
 import RegisterView from "../views/RegisterView.vue";
+import ProfileView from "../views/ProfileView.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,11 @@ const router = createRouter({
             path: '/login&register', 
             name: 'login&register',
             component: RegisterView,
+          },
+          {
+            path: '/profile', 
+            name: 'profile',
+            component: ProfileView,
           }
         
     ]

@@ -24,6 +24,7 @@ import "./assets/main.css";
     <template #home><RouterLink to="/" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Home</RouterLink></template>
     <template #about><RouterLink to="/about" style="text-decoration: none; color: var(--neutral-colors-headings-black);">About</RouterLink></template>
     <template #contact><RouterLink to="/contact" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Contact</RouterLink></template>
+    <template #profile><RouterLink to="/profile" style="text-decoration: none; color: var(--neutral-colors-headings-black);">Profile</RouterLink></template>
     <template #iconregister>
       <RouterLink to="/login&register" style="text-decoration: none;"><img alt="" src="./assets/userIcon.png" class="register-icon"/></RouterLink>
     </template>
