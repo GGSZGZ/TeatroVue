@@ -7,7 +7,6 @@ const plays = ref([]);
 const user = JSON.parse(localStorage.getItem('user')!);
 const userLS=useApiStore(pinia).fetchUser(Number(user.id));
 
-
 function fetchPutUserAll(user:any){
     user.username=name.value.value;
     user.surname=surname.value.value ;
@@ -44,8 +43,10 @@ const visible = ref(false);
 if(userLS!=null){
     name.value.value = user.username;
     surname.value.value = user.surname;
-    passwd.value.value = user.passwd;
-    direction.value.value = user.direction;
+    passwd.value.value= user.passwd;
+    userLS.then(resultado => {
+        direction.value.value= resultado.direction;
+    });
     email.value.value = user.email;
     tlf.value.value = user.tlf;
 }
