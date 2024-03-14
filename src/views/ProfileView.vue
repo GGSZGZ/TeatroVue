@@ -4,7 +4,10 @@ import { onMounted, ref } from 'vue';
 import { useApiStore,pinia } from '@/store/api';
 const plays = ref([]);
 //FETCHS
-const userLS = JSON.parse(localStorage.getItem('user')!);
+const user = JSON.parse(localStorage.getItem('user')!);
+const userLS=useApiStore(pinia).fetchUser(Number(user.id));
+
+
 function fetchPutUserAll(user:any){
     user.username=name.value.value;
     user.surname=surname.value.value ;
@@ -39,12 +42,12 @@ const tlf = useField('tlf');
 const visible = ref(false);
 
 if(userLS!=null){
-    name.value.value = userLS.username;
-    surname.value.value = userLS.surname;
-    passwd.value.value = userLS.passwd;
-    direction.value.value = userLS.direction;
-    email.value.value = userLS.email;
-    tlf.value.value = userLS.tlf;
+    name.value.value = user.username;
+    surname.value.value = user.surname;
+    passwd.value.value = user.passwd;
+    direction.value.value = user.direction;
+    email.value.value = user.email;
+    tlf.value.value = user.tlf;
 }
 
 function viewTickets(){
@@ -52,7 +55,7 @@ function viewTickets(){
     function renderTickets() {
         userTickets.innerHTML = '';
 
-        userLS.tickets.forEach((ticket:any) => {
+        userLS.then(user =>user.tickets.forEach((ticket:any) => {
           const row = document.createElement('tr');
           row.id = `row-${ticket.id}`; 
           row.innerHTML = `
@@ -66,7 +69,7 @@ function viewTickets(){
                 }
             });
           userTickets.appendChild(row);
-        });
+        }));
     }
     renderTickets()
 }
