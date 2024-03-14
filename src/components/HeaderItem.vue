@@ -258,8 +258,8 @@ if (localStorage.getItem('admin')=='true') {
     } else {
       adminH3.value!.style.display = 'none';
     }
-
-    if(localStorage.getItem('user')!==JSON.stringify(null)){
+    
+    if(localStorage.getItem('user')!==JSON.stringify(null) && localStorage.getItem('user')!==null){
       profileH3.value!.style.display = 'block';
     }else{
       profileH3.value!.style.display = 'none';

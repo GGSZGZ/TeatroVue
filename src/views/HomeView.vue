@@ -41,7 +41,7 @@ fetchPlays();
   <CarrouselItemVue />
   <section class="grip" id="grip">
     <div class="grip-cards">
-      <CardItem v-for="(obra, index) in plays.slice(0, 12)"
+      <CardItem v-for="(obra) in plays.slice(0, 12)"
         :key="obra.id"
         :idObra="obra.id"
         :classNumber="obra.class"
