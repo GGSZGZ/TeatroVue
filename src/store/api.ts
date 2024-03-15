@@ -12,7 +12,7 @@ export const useApiStore = defineStore('teatro', {
   actions: {
     async fetchPlays() {
       try {
-        const response = await fetch("http://ivanggsapi.retocsv.es/play");
+        const response = await fetch("https://ivanggsapi.retocsv.es/play");
         return await response.json();
       } catch (error) {
         console.log("Error al obtener los datos");
@@ -21,7 +21,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPlay(idObra: number) {
       try {
-        const response = await fetch(`http://ivanggsapi.retocsv.es/play/${idObra}`);
+        const response = await fetch(`https://ivanggsapi.retocsv.es/play/${idObra}`);
         return await response.json();
       } catch (error) {
         console.log("Error al obtener los datos");
@@ -29,7 +29,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchUsers() {
       try {
-        const response = await fetch("http://ivanggsapi.retocsv.es/user");
+        const response = await fetch("https://ivanggsapi.retocsv.es/user");
         return await response.json();
       } catch (error) {
         console.log("Error al obtener los datos");
@@ -38,7 +38,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchUser(idUser: number) {
       try {
-        const response = await fetch(`http://ivanggsapi.retocsv.es/user/${idUser}`);
+        const response = await fetch(`https://ivanggsapi.retocsv.es/user/${idUser}`);
         return await response.json();
       } catch (error) {
         console.log("Error al obtener los datos");
@@ -46,7 +46,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPostUser(user:any) {
       try {
-        const response = await fetch('http://ivanggsapi.retocsv.es/user', {
+        const response = await fetch('https://ivanggsapi.retocsv.es/user', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPostTicket(ticket:any) {
       try {
-        const response = await fetch('http://ivanggsapi.retocsv.es/ticket', {
+        const response = await fetch('https://ivanggsapi.retocsv.es/ticket', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPutUserAll(idUser: number, user: any) {
       try {
-        const response = await fetch(`http://ivanggsapi.retocsv.es/user/${idUser}`, {
+        const response = await fetch(`https://ivanggsapi.retocsv.es/user/${idUser}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPutUser(idUser: number, notes: string) {
       try {
-        const response = await fetch(`http://ivanggsapi.retocsv.es/user/${idUser}`, {
+        const response = await fetch(`https://ivanggsapi.retocsv.es/user/${idUser}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPutUserTickets(idUser: number,payment : string,direction : string) {
       try {
-        const response = await fetch(`http://ivanggsapi.retocsv.es/user/${idUser}`, {
+        const response = await fetch(`https://ivanggsapi.retocsv.es/user/${idUser}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchDeletePlay(idObra: number) {
       try {
-        const response = await fetch(`http://ivanggsapi.retocsv.es/play/${idObra}`, {
+        const response = await fetch(`https://ivanggsapi.retocsv.es/play/${idObra}`, {
           method: 'DELETE'
         });
         if (!response.ok) {
@@ -190,7 +190,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPutPlay(idObra: number, title: string, description : string, synopsis : string, director: string, genre: string) {
       try {
-        const response = await fetch(`http://ivanggsapi.retocsv.es/play/${idObra}`, {
+        const response = await fetch(`https://ivanggsapi.retocsv.es/play/${idObra}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -222,7 +222,7 @@ export const useApiStore = defineStore('teatro', {
     },
     async fetchPostPlays(play:any) {
       try {
-        const response = await fetch('http://ivanggsapi.retocsv.es/play', {
+        const response = await fetch('https://ivanggsapi.retocsv.es/play', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
