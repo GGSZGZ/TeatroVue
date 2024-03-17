@@ -5,9 +5,13 @@ import { useApiStore,pinia } from '@/store/api';
 const plays = ref([]);
 //FETCHS
 const user = JSON.parse(localStorage.getItem('user')!);
+const userId=user.id;
 const userLS=useApiStore(pinia).fetchUser(Number(user.id));
 
 function fetchPutUserAll(user:any){
+    if(userId){
+    user.id=userId;
+    }
     user.username=name.value.value;
     user.surname=surname.value.value ;
     user.passwd= passwd.value.value;
